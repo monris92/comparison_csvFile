@@ -130,14 +130,14 @@ def main():
             # Add more validations as needed
         }
 
-        # Perform validations and compare downloaded_csv with your local CSV
-        validation_passed = compare_csv(downloaded_csv, local_csv_file, validations)
-        if validation_passed:
-            print("CSV validation successful.")
-        else:
+        # Lakukan validasi dan bandingkan downloaded_csv dengan local_csv Anda
+        if not compare_csv(downloaded_csv, local_csv_file, validations):
             print("CSV validation failed.")
+            sys.exit(1)  # Keluar dengan status 1 jika validasi gagal
+        else:
+            print("CSV validation successful.")
     else:
         print(f"Failed to download CSV. Status Code: {response.status_code}")
-
+        sys.exit(1)  # Keluar dengan status 1 jika pengunduhan CSV gagal
 if __name__ == "__main__":
     main()
