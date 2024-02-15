@@ -87,19 +87,14 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
         local_csv = list(local_csv_reader)
 
     # Perform validations
-    validation_failed = False
     for (row_index, col_index), expected_value in validations.items():
-        if downloaded_csv[row_index][col_index] != expected_value:
+        # Adjust indices if your CSV has headers
+        if local_csv[row_index][col_index] != expected_value:
             print(f"Validation failed at row {row_index + 1}, column {col_index + 1}. "
-                  f"Expected: {expected_value}, Found: {downloaded_csv[row_index][col_index]}")
-            validation_failed = True
-    
-    if validation_failed:
-        print("CSV validation failed.")
-        return False
-    else:
-        print("All validations passed.")
-        return True
+                  f"Expected: {expected_value}, Found: {local_csv[row_index][col_index]}")
+            return False
+    print("All validations passed.")
+    return True
 
 # Main function
 def main():
