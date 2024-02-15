@@ -24,6 +24,6 @@ jobs:
     - name: Run CSV validation script
       run: python comparison_report.py
       env:
-        USER: ${{ secrets.USER }}
-        PASS: ${{ secrets.PASS }}
+        USER_SUPER_ADMIN: ${{ secrets.USER_SUPER_ADMIN }}
+        PASS_SUPER_ADMIN: ${{ secrets.PASS_SUPER_ADMIN }}
       # Menjalankan skrip validasi CSV dan mengatur variabel lingkungan
