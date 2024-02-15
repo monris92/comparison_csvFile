@@ -22,7 +22,7 @@ jobs:
       # Menginstal dependensi yang diperlukan untuk skrip Python Anda
 
     - name: Run CSV validation script
-      run: python path/to/your/script.py
+      run: python comparison_report.py
       env:
         USERNAME: ${{ secrets.USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
