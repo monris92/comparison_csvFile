@@ -101,6 +101,7 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
 
 # Fungsi untuk menghapus laporan
 def delete_report(token, report_id):
+    print(f"Attempting to delete report with ID: {report_id}")
     delete_url = f'https://map.chronicle.rip/api/v2/reports/cemetery/Astana_Tegal_Gundul/delete/{report_id}/'
     delete_headers = {
         'Authorization': f'Bearer {token}',
@@ -109,9 +110,9 @@ def delete_report(token, report_id):
     }
     response = requests.delete(delete_url, headers=delete_headers)
     if response.status_code == 204:
-        print(f"Report {report_id} successfully deleted.")
+        print(f"Report with ID: {report_id} has been successfully deleted.")
     else:
-        print(f"Failed to delete report {report_id}. Status Code: {response.status_code}, Response: {response.content}")
+        print(f"Failed to delete report with ID: {report_id}. Status Code: {response.status_code}, Response: {response.content}")
 
 
 # Main function
