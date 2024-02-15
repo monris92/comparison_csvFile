@@ -97,8 +97,8 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
 
 # Main function
 def main():
-    username = os.environ['USER']
-    password = os.environ['PASS']
+    username = os.environ['USER_SUPER_ADMIN']
+    password = os.environ['PASS_SUPER_ADMIN']
     local_csv_file = 'astana_tegal_gundul_people-template.csv'
 
     token = get_access_token(username, password)
