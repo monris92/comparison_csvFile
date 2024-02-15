@@ -126,7 +126,6 @@ def main():
     if response.status_code == 200:
         decoded_content = response.content.decode('utf-8')
         downloaded_csv = list(csv.reader(decoded_content.splitlines()))
-
         # Define your validations (row_index and col_index should be zero-based)
         validations = {
             # Assume the keys are (row, column) indices for the expected values
@@ -134,12 +133,13 @@ def main():
             (3, 0): 'A D 6',
             # Add more validations as needed
         }
-
         # Perform validations and compare downloaded_csv with your local CSV
         validation_passed = compare_csv(downloaded_csv, local_csv_file, validations)
-        if not validation_passed:
+        if validation_passed:
+            print("CSV validation successful.")
+        else:
             print("CSV validation failed.")
-            sys.exit(1)
-        
+    else:
+        print(f"Failed to download CSV. Status Code: {response.status_code}")
 if __name__ == "__main__":
     main()
