@@ -52,7 +52,10 @@ def request_csv_generation(token, null=None):
     response = requests.post(generate_url, headers=generate_headers, json=generate_payload)
     if response.status_code == 200:
         print("CSV generation request successful.")
-        return response.json()  # The response must include a report ID or similar
+        response_data = response.json()
+        report_ws = response_data['ws']
+        report_id = report_ws.split('/')[-2]  # Mengambil angka dari akhir string '/ws/report_cemetery/Astana_Tegal_Gundul/5186/'
+        return report_id
     else:
         print("CSV generation request failed.")
         print(f"Status Code: {response.status_code}, Response: {response.content}")
@@ -96,6 +99,21 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
     print("All validations passed.")
     return True
 
+# Fungsi untuk menghapus laporan
+def delete_report(token, report_id):
+    delete_url = f'https://map.chronicle.rip/api/v2/reports/cemetery/Astana_Tegal_Gundul/delete/{report_id}/'
+    delete_headers = {
+        'Authorization': f'Bearer {token}',
+        'Accept': 'application/json, text/plain, */*',
+        # ... (header lainnya jika perlu)
+    }
+    response = requests.delete(delete_url, headers=delete_headers)
+    if response.status_code == 204:
+        print(f"Report {report_id} successfully deleted.")
+    else:
+        print(f"Failed to delete report {report_id}. Status Code: {response.status_code}, Response: {response.content}")
+
+
 # Main function
 def main():
     username = os.environ['USER_SUPER_ADMIN']
@@ -104,17 +122,17 @@ def main():
 
     token = get_access_token(username, password)
     if not token:
-        return  # Exit if login failed
+        sys.exit(1)  # Exit if login failed
 
     # Request to generate a CSV, check if the response includes an ID
-    report_info = request_csv_generation(token)
-    if not report_info:
-        return  # Exit if report generation failed
+    report_id = request_csv_generation(token)
+    if not report_id:
+        sys.exit(1)  # Exit if report generation failed
 
     # Check the status of the CSV generation and download when ready
     csv_file_url = check_csv_status_and_download(token)
     if not csv_file_url:
-        return  # Exit if checking status or downloading failed
+        sys.exit(1)  # Exit if checking status or downloading failed
 
     # Download the CSV file
     response = requests.get(csv_file_url)
@@ -136,8 +154,11 @@ def main():
             sys.exit(1)  # Keluar dengan status 1 jika validasi gagal
         else:
             print("CSV validation successful.")
+            # Hapus laporan disini
+            delete_report(token, report_id)
     else:
         print(f"Failed to download CSV. Status Code: {response.status_code}")
         sys.exit(1)  # Keluar dengan status 1 jika pengunduhan CSV gagal
+
 if __name__ == "__main__":
     main()
