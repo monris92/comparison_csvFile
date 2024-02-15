@@ -95,21 +95,6 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
             return False
     print("All validations passed.")
     return True
-# delete report
-def delete_report(token, report_id):
-    delete_url = f'https://map.chronicle.rip/api/v2/reports/cemetery/Astana_Tegal_Gundul/delete/{report_id}/'
-    delete_headers = {
-        'Authorization': f'Bearer {token}',
-        'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Connection': 'keep-alive',
-        'sec-ch-ua-platform': '"Windows"'
-    }
-    response = requests.delete(delete_url, headers=delete_headers)
-    if response.status_code == 204:
-        print(f"Report {report_id} successfully deleted.")
-    else:
-        print(f"Failed to delete report {report_id}. Status Code: {response.status_code}, Response: {response.content}")
 
 # Main function
 def main():
@@ -145,15 +130,14 @@ def main():
             # Add more validations as needed
         }
 
-    # Perform validations and compare downloaded_csv with your local CSV
-    validation_passed = compare_csv(downloaded_csv, local_csv_file, validations)
-    if validation_passed:
-        print("CSV validation successful.")
-        # Hapus laporan disini
-        report_id = report_info['id'][0]['id']  # Misalnya mendapatkan report_id dari response /status
-        delete_report(token, report_id)
+        # Lakukan validasi dan bandingkan downloaded_csv dengan local_csv Anda
+        if not compare_csv(downloaded_csv, local_csv_file, validations):
+            print("CSV validation failed.")
+            sys.exit(1)  # Keluar dengan status 1 jika validasi gagal
+        else:
+            print("CSV validation successful.")
     else:
-        print("CSV validation failed.")
-        sys.exit(1)  # Keluar dengan status 1 jika validasi gagal
+        print(f"Failed to download CSV. Status Code: {response.status_code}")
+        sys.exit(1)  # Keluar dengan status 1 jika pengunduhan CSV gagal
 if __name__ == "__main__":
     main()
