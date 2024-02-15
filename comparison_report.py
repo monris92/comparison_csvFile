@@ -2,6 +2,7 @@ import requests
 import csv
 import time
 import os
+import sys
 
 # Function to get the access token
 def get_access_token(username, password):
@@ -87,11 +88,10 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
 
     # Perform validations
     for (row_index, col_index), expected_value in validations.items():
-        # Adjust indices if your CSV has headers
-        if local_csv[row_index][col_index] != expected_value:
+        if downloaded_csv[row_index][col_index] != expected_value:
             print(f"Validation failed at row {row_index + 1}, column {col_index + 1}. "
-                  f"Expected: {expected_value}, Found: {local_csv[row_index][col_index]}")
-            return False
+                  f"Expected: {expected_value}, Found: {downloaded_csv[row_index][col_index]}")
+            return False  # Atau bisa juga menggunakan `sys.exit(1)` langsung di sini
     print("All validations passed.")
     return True
 
@@ -137,6 +137,10 @@ def main():
             print("CSV validation failed.")
     else:
         print(f"Failed to download CSV. Status Code: {response.status_code}")
-
+  
+    validation_passed = compare_csv(downloaded_csv, local_csv_file, validations)
+    if not validation_passed:
+        sys.exit(1)
+        
 if __name__ == "__main__":
     main()
