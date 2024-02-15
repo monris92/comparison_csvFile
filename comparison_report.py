@@ -141,12 +141,10 @@ def main():
             print("CSV validation successful.")
         else:
             print("CSV validation failed.")
+            sys.exit(1)  # Keluar dengan status 1 jika validasi gagal
     else:
         print(f"Failed to download CSV. Status Code: {response.status_code}")
-  
-    validation_passed = compare_csv(downloaded_csv, local_csv_file, validations)
-    if not validation_passed:
-        sys.exit(1)
+        sys.exit(1)  # Keluar dengan status 1 jika CSV gagal diunduh
         
 if __name__ == "__main__":
     main()
