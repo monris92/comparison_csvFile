@@ -1,6 +1,7 @@
 import requests
 import csv
 import time
+import os
 
 # Function to get the access token
 def get_access_token(username, password):
@@ -96,8 +97,8 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
 
 # Main function
 def main():
-    username = 'admin@chronicle.rip'
-    password = '9vq33MahpTV7y9'
+    username = os.environ.get('USERNAME')
+    password = os.environ.get('PASSWORD')
     local_csv_file = 'astana_tegal_gundul_people-template.csv'
 
     token = get_access_token(username, password)
