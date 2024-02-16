@@ -1,12 +1,14 @@
 import requests
+from config import *
 
 # Contoh URL endpoint APIs
-API_BASE_URL = "https://api.example.com/v1/reports"
+# API_BASE_URL = "https://map.chronicle.rip/api/v2/reports/cemetery/Astana_Tegal_Gundul"
+
 
 def request_csv_generation(token):
     """Request the generation of a CSV report."""
     headers = {"Authorization": f"Bearer {token}"}
-    response = requests.post(f"{API_BASE_URL}/generate", headers=headers)
+    response = requests.post(f"{API_BASE_URL_V2}/reports/cemetery/{cemetery_name}/generate/people/", headers=headers)
     if response.status_code == 201:
         report_id = response.json().get('id')
         return report_id
@@ -17,7 +19,7 @@ def request_csv_generation(token):
 def check_csv_status_and_download(report_id, token):
     """Check the status of the CSV report and download it when ready."""
     headers = {"Authorization": f"Bearer {token}"}
-    response = requests.get(f"{API_BASE_URL}/{report_id}/status", headers=headers)
+    response = requests.get(f"{API_BASE_URL_V2}/{report_id}/status", headers=headers)
     if response.status_code == 200:
         status = response.json().get('status')
         if status == 'completed':
@@ -34,7 +36,7 @@ def check_csv_status_and_download(report_id, token):
 def delete_report(report_id, token):
     """Delete the CSV report from the server."""
     headers = {"Authorization": f"Bearer {token}"}
-    response = requests.delete(f"{API_BASE_URL}/{report_id}", headers=headers)
+    response = requests.delete(f"{API_BASE_URL_V2}/delete/{report_id}", headers=headers)
     if response.status_code == 204:
         print("Report deleted successfully.")
     else:
