@@ -37,13 +37,14 @@ def check_csv_status_and_download(token, report_id):
     while True:
         response = requests.get(status_url, headers=headers)
         if response.status_code == 200:
-            report = next((r for r in response.json() if r.get("id") == report_id), None)
-            if report and report.get('status').lower() == "finished":
-                file_url = report.get('file')
-                print(f"Report {report_id} is finished. Downloading CSV file from: {file_url}")
-                return download_csv_report(file_url, report_id)
+            reports = response.json()
+            for report in reports:
+                if report.get('id') == report_id and report.get('status').lower() == "finished":
+                    file_url = report.get('file')
+                    print(f"Report {report_id} is finished. Downloading CSV file from: {file_url}")
+                    return download_csv_report(file_url, report_id)
             print("Waiting for report to finish...")
-            time.sleep(30)
+            time.sleep(30)  # Wait before checking again
         else:
             print(f"Failed to check report status. Status Code: {response.status_code}")
             return None
