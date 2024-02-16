@@ -1,3 +1,5 @@
+import time
+
 import requests
 from config import *
 
@@ -31,22 +33,29 @@ def request_csv_generation(token):
         print(f"Status Code: {response.status_code}, Response: {response.content}")
         return None
 
-def check_csv_status_and_download(report_id, token):
-    """Check the status of the CSV report and download it when ready."""
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.get(f"{API_BASE_URL_V2}/{report_id}/status", headers=headers)
-    if response.status_code == 200:
-        status = response.json().get('status')
-        if status == 'completed':
-            download_url = response.json().get('download_url')
-            csv_response = requests.get(download_url)
-            if csv_response.status_code == 200:
-                with open('report.csv', 'wb') as f:
-                    f.write(csv_response.content)
-                print("CSV report downloaded successfully.")
-                return 'report.csv'
-    print("CSV report is not ready or failed to download.")
-    return None
+def check_csv_status_and_download(token):
+    status_url = f"{API_BASE_URL_V2}/reports/cemetery/{CEMETERY_NAME}/status/"
+    headers = {'Authorization': f'Bearer {token}'}
+    while True:
+        response = requests.get(status_url, headers=headers)
+        if response.status_code == 200:
+            reports = response.json()
+            for report in reports:
+                if report.get('status').lower() == "finished":
+                    report_id = report.get('id')  # Asumsikan bahwa ini adalah ID yang dibutuhkan
+                    download_url = report.get('file')
+                    print(f"Report {report_id} is finished. Downloading CSV file.")
+                    csv_response = requests.get(download_url)
+                    if csv_response.status_code == 200:
+                        with open(f'report_{report_id}.csv', 'wb') as f:
+                            f.write(csv_response.content)
+                        print(f"CSV report {report_id} downloaded successfully.")
+                        return f'report_{report_id}.csv'
+            print("Waiting for report to finish...")
+            time.sleep(30)  # Wait before checking again
+        else:
+            print(f"Failed to check report status. Status Code: {response.status_code}")
+            return None
 
 def delete_report(report_id, token):
     """Delete the CSV report from the server."""
