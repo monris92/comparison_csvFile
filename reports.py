@@ -93,7 +93,6 @@ def download_csv_report(file_url, report_id):
         return None
 # Use the get_latest_report_id function to get the latest report ID dynamically
 
-
 def delete_report(report_id, token):
     """Delete the CSV report from the server."""
     headers = {"Authorization": f"Bearer {token}"}
