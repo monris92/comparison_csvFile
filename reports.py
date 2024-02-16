@@ -3,6 +3,10 @@ import requests
 from config import *
 
 
+import logging
+
+# Setting up logging
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 def request_csv_generation(token):
     """Request the generation of a CSV report."""
@@ -49,6 +53,7 @@ def check_csv_status_and_download(token, report_id, max_retries=10, retry_delay=
                 time.sleep(retry_delay)
                 retries += 1
                 print(report_id)
+                logging.info(f"Checking and downloading report with ID: {report_id}")
         else:
             print(f"Failed to check report status. Status Code: {response.status_code}")
             return None
@@ -65,6 +70,7 @@ def download_csv_report(file_url, report_id):
         return filename
     else:
         print(f"Failed to download CSV. Status Code: {response.status_code}")
+        logging.info(f"CSV file would be downloaded from: {file_url}")
         return None
 
 def delete_report(report_id, token):
