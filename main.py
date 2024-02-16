@@ -1,5 +1,7 @@
 # main.py
+import csv
 import sys
+import requests
 
 from utilities import get_access_token, request_csv_generation, check_csv_status_and_download, compare_csv, delete_report
 from config import USERNAME, PASSWORD, LOCAL_CSV_FILE
