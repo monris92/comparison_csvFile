@@ -1,3 +1,4 @@
+import csv
 import sys
 import requests
 from config import username, password, local_csv_file
