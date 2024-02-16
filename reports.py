@@ -7,13 +7,28 @@ from config import *
 
 def request_csv_generation(token):
     """Request the generation of a CSV report."""
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.post(f"{API_BASE_URL_V2}/reports/cemetery/{cemetery_name}/generate/people/", headers=headers)
-    if response.status_code == 201:
-        report_id = response.json().get('id')
+    headers = {
+        'Authorization': f'Bearer {token}'
+    }
+    payload = {
+        "attributes": REPORT_ATTRS,
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": [],
+        "chapters": REPORT_CHAPTERS,
+        "first_name": None,
+        "last_name": None
+    }
+    response = requests.post(REPORT_GENERATE_ENDPOINT, headers=headers, json=payload)
+    if response.status_code == 200:
+        print("CSV generation request successful.")
+        response_data = response.json()
+        report_ws = response_data['ws']
+        report_id = report_ws.split('/')[-2]
         return report_id
     else:
-        print("Failed to request CSV generation.")
+        print("CSV generation request failed.")
+        print(f"Status Code: {response.status_code}, Response: {response.content}")
         return None
 
 def check_csv_status_and_download(report_id, token):
