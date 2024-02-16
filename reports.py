@@ -47,6 +47,7 @@ def check_csv_status_and_download(token, report_id, max_retries=10, retry_delay=
             if report and report.get('status').lower() == "finished":
                 file_url = report.get('file')
                 print(f"Report {report_id} is finished. Downloading CSV file from: {file_url}")
+                logging.info(f"Checking and downloading from url: {status_url}")
                 return download_csv_report(file_url, report_id)
             else:
                 print(f"Waiting for report to finish... (Attempt {retries+1}/{max_retries})")
@@ -67,6 +68,7 @@ def download_csv_report(file_url, report_id):
         with open(filename, 'wb') as file:
             file.write(response.content)
         print(f"CSV report downloaded successfully as {filename}.")
+        logging.info(f"download_csv_report: {file_url}")
         return filename
     else:
         print(f"Failed to download CSV. Status Code: {response.status_code}")
