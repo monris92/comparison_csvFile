@@ -1,6 +1,6 @@
 import requests
 
-# Contoh URL endpoint API
+# Contoh URL endpoint APIs
 API_BASE_URL = "https://api.example.com/v1/reports"
 
 def request_csv_generation(token):
