@@ -17,8 +17,8 @@ def main():
     if not report_id:
         sys.exit(1)  # Exit if report generation failed
 
-    # Check the status of the CSV generation and download when ready
-    downloaded_csv_file = check_csv_status_and_download(token, report_id)
+    # Check the status of the CSV generation and download when ready with timeout
+    downloaded_csv_file = check_csv_status_and_download(token, report_id, max_retries=10, retry_delay=30)
     if not downloaded_csv_file:
         sys.exit(1)  # Exit if checking status or downloading failed
 
