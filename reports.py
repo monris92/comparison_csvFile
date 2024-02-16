@@ -33,29 +33,49 @@ def request_csv_generation(token):
         print(f"Status Code: {response.status_code}, Response: {response.content}")
         return None
 
-def check_csv_status_and_download(token):
+# Check the status of the CSV generation and download when ready
+def check_csv_status_and_download(token, max_retries=10, retry_delay=30):
     status_url = f"{API_BASE_URL_V2}/reports/cemetery/{CEMETERY_NAME}/status/"
     headers = {'Authorization': f'Bearer {token}'}
-    while True:
-        response = requests.get(status_url, headers=headers)
-        if response.status_code == 200:
-            reports = response.json()
-            for report in reports:
-                if report.get('status').lower() == "finished":
-                    report_id = report.get('id')  # Asumsikan bahwa ini adalah ID yang dibutuhkan
-                    download_url = report.get('file')
-                    print(f"Report {report_id} is finished. Downloading CSV file.")
-                    csv_response = requests.get(download_url)
-                    if csv_response.status_code == 200:
-                        with open(f'report_{report_id}.csv', 'wb') as f:
-                            f.write(csv_response.content)
-                        print(f"CSV report {report_id} downloaded successfully.")
-                        return f'report_{report_id}.csv'
-            print("Waiting for report to finish...")
-            time.sleep(30)  # Wait before checking again
+    retries = 0
+
+    while retries < max_retries:
+        try:
+            response = requests.get(status_url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                reports = response.json()
+                for report in reports:
+                    if report.get('status').lower() == "finished":
+                        report_id = report.get('id')
+                        download_url = report.get('file')
+                        print(f"Report {report_id} is finished. Downloading CSV file.")
+                        return download_csv_report(download_url, report_id)
+                print("Waiting for report to finish...")
+                time.sleep(retry_delay)
+            else:
+                print(f"Failed to check report status. Status Code: {response.status_code}")
+                return None
+        except requests.RequestException as e:
+            print(f"An error occurred: {e}")
+        retries += 1
+    print("Exceeded maximum number of retries.")
+    return None
+
+def download_csv_report(download_url, report_id):
+    try:
+        csv_response = requests.get(download_url, timeout=10)
+        if csv_response.status_code == 200 and 'text/csv' in csv_response.headers.get('Content-Type', ''):
+            filename = f'report_{report_id}.csv'
+            with open(filename, 'wb') as f:
+                f.write(csv_response.content)
+            print(f"CSV report {report_id} downloaded successfully.")
+            return filename
         else:
-            print(f"Failed to check report status. Status Code: {response.status_code}")
+            print(f"Failed to download report. Status Code: {csv_response.status_code}")
             return None
+    except requests.RequestException as e:
+        print(f"An error occurred during file download: {e}")
+        return None
 
 def delete_report(report_id, token):
     """Delete the CSV report from the server."""
