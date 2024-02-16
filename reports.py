@@ -44,26 +44,34 @@ def check_csv_status_and_download(token):
             reports = response.json()
             for report in reports:
                 if report.get('status').lower() == "finished":
-                    download_url = report.get('file')  # Ini adalah URL langsung ke file CSV yang ingin diunduh
-                    file_name = report.get('file_name')  # Ini adalah nama file yang dihasilkan
-                    print(f"Report {report['id']} is finished. Downloading CSV file: {file_name}")
-                    return download_csv_report(download_url, file_name)
+                    file_url = report.get('file')  # Mengambil URL unduhan dari property "file"
+                    print(f"Report {report['id']} is finished. Downloading CSV file from: {file_url}")
+                    return download_csv_report(file_url, report['id'])
             print("Waiting for report to finish...")
-            time.sleep(30)  # Wait before checking again
+            time.sleep(30)  # Tunggu sebelum memeriksa lagi
         else:
             print(f"Failed to check report status. Status Code: {response.status_code}")
             return None
 
-def download_csv_report(download_url, file_name):
-    csv_response = requests.get(download_url)
+def download_csv_report(file_url, report_id):
+    csv_response = requests.get(file_url)
     if csv_response.status_code == 200:
-        with open(file_name, 'wb') as f:
+        filename = f'report_{report_id}.csv'  # Membangun nama file dengan menggunakan report ID
+        with open(filename, 'wb') as f:
             f.write(csv_response.content)
-        print(f"CSV report downloaded successfully as {file_name}.")
-        return file_name
+        print(f"CSV report downloaded successfully as {filename}.")
+        return filename
     else:
         print(f"Failed to download report. Status Code: {csv_response.status_code}")
         return None
+
+# Contoh penggunaan fungsi:
+token = "YOUR_ACCESS_TOKEN"  # Ganti dengan token akses Anda yang sebenarnya
+downloaded_file = check_csv_status_and_download(token)
+if downloaded_file:
+    print(f"Downloaded file: {downloaded_file}")
+else:
+    print("There was an issue downloading the file.")
 
 def delete_report(report_id, token):
     """Delete the CSV report from the server."""
