@@ -23,7 +23,7 @@ jobs:
       # Menginstal dependensi yang diperlukan untuk skrip Python Anda
 
     - name: Run CSV validation script
-      run: python testX.py
+      run: python main.py
       env:
         USER_SUPER_ADMIN: ${{ secrets.USER_SUPER_ADMIN }}
         PASS_SUPER_ADMIN: ${{ secrets.PASS_SUPER_ADMIN }}

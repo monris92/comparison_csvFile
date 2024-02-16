@@ -1,47 +1,36 @@
-import csv
+# main.py
 import sys
-import requests
-from config import username, password, local_csv_file
-from auth import get_access_token
-from reports import request_csv_generation, check_csv_status_and_download, delete_report
-from validators import compare_csv
 
-# Fungsi utama
+from utilities import get_access_token, request_csv_generation, check_csv_status_and_download, compare_csv, delete_report
+from config import USERNAME, PASSWORD, LOCAL_CSV_FILE
+
 def main():
-    token = get_access_token(username, password)
+    token = get_access_token(USERNAME, PASSWORD)
     if not token:
-        sys.exit(1)  # Exit if login failed
+        sys.exit(1)
 
-    # Request to generate a CSV, check if the response includes an ID
     report_id = request_csv_generation(token)
     if not report_id:
-        sys.exit(1)  # Exit if report generation failed
+        sys.exit(1)
 
-    # Check the status of the CSV generation and download when ready with timeout
-    downloaded_csv_file = check_csv_status_and_download(token, report_id, max_retries=10, retry_delay=30)
-    if not downloaded_csv_file:
-        sys.exit(1)  # Exit if checking status or downloading failed
+    csv_file_url = check_csv_status_and_download(token)
+    if not csv_file_url:
+        sys.exit(1)
 
-    # Open downloaded CSV file and read into memory
-    with open(downloaded_csv_file, newline='', encoding='utf-8') as file:
-        downloaded_csv = list(csv.reader(file))
-
-    # Define your validations (row_index and col_index should be zero-based)
-    validations = {
-        # Assume the keys are (row, column) indices for the expected values
-        (2, 0): 'A D 2',  # Adjust row_index if your CSV has headers
-        (3, 0): 'A D 6',
-        # Add more validations as needed
-    }
-
-    # Perform validation and compare downloaded_csv with your local_csv
-    if not compare_csv(downloaded_csv, local_csv_file, validations):
-        print("CSV validation failed.")
-        sys.exit(1)  # Exit with status 1 if validation fails
+    response = requests.get(csv_file_url)
+    if response.status_code == 200:
+        decoded_content = response.content.decode('utf-8')
+        downloaded_csv = list(csv.reader(decoded_content.splitlines()))
+        validations = {(2, 0): 'A D 2', (3, 0): 'A D 6'}  # Replace with actual validations
+        if compare_csv(downloaded_csv, LOCAL_CSV_FILE, validations):
+            print("CSV validation successful.")
+            delete_report(token, report_id)
+        else:
+            print("CSV validation failed.")
+            sys.exit(1)
     else:
-        print("CSV validation successful.")
-        # Delete the report here
-        delete_report(token, report_id)
+        print(f"Failed to download CSV. Status Code: {response.status_code}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
