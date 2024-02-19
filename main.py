@@ -4,10 +4,6 @@ import sys
 from utilities import *
 from config import *
 
-def get_api_url(version, endpoint, cemetery_name=None):
-    if cemetery_name:
-        return f'{BASE_URL}/{version}/{endpoint}/{cemetery_name}/'
-    return f'{BASE_URL}/{version}/{endpoint}/'
 
 def download_csv(csv_file_url, download_path):
     response = requests.get(csv_file_url)
