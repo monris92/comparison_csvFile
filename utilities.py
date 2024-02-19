@@ -1,12 +1,17 @@
 import requests
 import csv
 import time
-from config import GENERATE_CSV_URL, STATUS_URL, LOGIN_URL
+from config import *
 
+def get_api_url(version, endpoint, cemetery_name=None):
+    if cemetery_name:
+        return f'{BASE_URL}/{version}/{endpoint}/{cemetery_name}/'
+    return f'{BASE_URL}/{version}/{endpoint}/'
 
 def get_access_token(username, password):
+    login_url = get_api_url(API_VERSION_V1, 'auth')
     login_payload = {"username": username, "password": password}
-    response = requests.post(LOGIN_URL, json=login_payload)
+    response = requests.post(login_url, json=login_payload)
     if response.status_code == 200:
         print("Login successful.")
         return response.json()['access']
@@ -17,21 +22,16 @@ def get_access_token(username, password):
 
 # Function to request CSV generation
 def request_csv_generation(token):
+    generate_url = get_api_url(API_VERSION_V2, 'reports/cemetery', CEMETERY_NAME) + 'generate/people/'
     generate_headers = {'Authorization': f'Bearer {token}'}
     generate_payload = {
-        "attributes": ["plot_id"],
+        "attributes": REPORT_ATTRS,
         "document_format": "csv",
-        "sections": ["Section A", "Section B"],
+        "sections": REPORT_SECTIONS,
         "cemeteries": [],
-        "chapters": [
-            "roi_holders",
-            "roi_applicants",
-            "interments",
-            "next_of_kins",
-            "interment_applicants"
-        ]
+        "chapters": REPORT_CHAPTERS
     }
-    response = requests.post(GENERATE_CSV_URL, headers=generate_headers, json=generate_payload)
+    response = requests.post(generate_url, headers=generate_headers, json=generate_payload)
     if response.status_code == 200:
         print("CSV generation request successful.")
         report_ws = response.json()['ws']
@@ -44,9 +44,10 @@ def request_csv_generation(token):
 
 # Function to check the status of the CSV generation
 def check_csv_status_and_download(token):
+    status_url = get_api_url(API_VERSION_V2, 'reports/cemetery', CEMETERY_NAME) + 'status/'
     status_headers = {'Authorization': f'Bearer {token}'}
     while True:
-        response = requests.get(STATUS_URL, headers=status_headers)
+        response = requests.get(status_url, headers=status_headers)
         if response.status_code == 200:
             reports = response.json()
             for report in reports:
@@ -75,8 +76,8 @@ def compare_csv(downloaded_csv, local_csv_file, validations):
 
 # Function to delete a report
 def delete_report(token, report_id):
+    delete_url = get_api_url(API_VERSION_V1, 'reports/cemetery', CEMETERY_NAME) + f'delete/{report_id}/'
     print(f"Attempting to delete report with ID: {report_id}")
-    delete_url = f'https://map.chronicle.rip/api/v2/reports/cemetery/Astana_Tegal_Gundul/delete/{report_id}/'
     delete_headers = {'Authorization': f'Bearer {token}', 'Accept': 'application/json, text/plain, */*'}
     response = requests.delete(delete_url, headers=delete_headers)
     if response.status_code == 204:
