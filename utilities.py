@@ -60,17 +60,27 @@ def check_csv_status_and_download(token):
             print(f"Failed to check report status. Status Code: {response.status_code}")
             return None
 
-# Function to compare two CSV files based on specific validations
-def compare_csv(downloaded_csv, local_csv_file, validations):
-    with open(local_csv_file, newline='', encoding='utf-8') as file:
-        local_csv_reader = csv.reader(file)
+# Function to compare two CSV files
+def compare_csv(downloaded_csv_path, local_csv_file):
+    with open(downloaded_csv_path, newline='', encoding='utf-8') as downloaded_file:
+        downloaded_csv_reader = csv.reader(downloaded_file)
+        downloaded_csv = list(downloaded_csv_reader)
+
+    with open(local_csv_file, newline='', encoding='utf-8') as local_file:
+        local_csv_reader = csv.reader(local_file)
         local_csv = list(local_csv_reader)
 
-    for (row_index, col_index), expected_value in validations.items():
-        if local_csv[row_index][col_index] != expected_value:
-            print(f"Validation failed at row {row_index + 1}, column {col_index + 1}. "
-                  f"Expected: {expected_value}, Found: {local_csv[row_index][col_index]}")
+    if len(downloaded_csv) != len(local_csv):
+        print("Validation failed: Number of rows does not match.")
+        return False
+
+    for row_index, (downloaded_row, local_row) in enumerate(zip(downloaded_csv, local_csv)):
+        if downloaded_row != local_row:
+            print(f"Validation failed at row {row_index + 1}:")
+            print(f"Downloaded: {downloaded_row}")
+            print(f"Local: {local_row}")
             return False
+
     print("All validations passed.")
     return True
 

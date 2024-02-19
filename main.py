@@ -10,7 +10,8 @@ from utilities import (
     compare_csv,
     delete_report,
 )
-from config import USERNAME, PASSWORD, LOCAL_CSV_FILE, DOWNLOAD_PATH
+from config import USERNAME, PASSWORD, DOWNLOAD_PATH, LOCAL_CSV_FILE
+
 
 def download_csv(csv_file_url, download_path):
     response = requests.get(csv_file_url)
@@ -36,8 +37,7 @@ def main():
 
     # Menyimpan CSV yang di-download ke path lokal
     if download_csv(csv_file_url, DOWNLOAD_PATH):
-        validations = {(2, 0): 'A D 2', (3, 0): 'A D 6'}  # Replace with actual validations
-        if compare_csv(DOWNLOAD_PATH, LOCAL_CSV_FILE, validations):
+        if compare_csv(DOWNLOAD_PATH, LOCAL_CSV_FILE):
             print("CSV validation successful.")
             delete_report(token, report_id)
         else:
