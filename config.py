@@ -4,8 +4,8 @@ import os
 BASE_URL = "https://map.chronicle.rip/api"
 API_VERSION_V1 = "v1"
 API_VERSION_V2 = "v2"
-
 DOWNLOAD_PATH = "temp/temporaryFile.csv"
+
 # Report Configurations
 REPORT_ATTRS = ["plot_id"]
 REPORT_SECTIONS = ["Section A", "Section B"]

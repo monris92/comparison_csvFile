@@ -2,11 +2,7 @@ import requests
 import csv
 import time
 from config import *
-
-def get_api_url(version, endpoint, cemetery_name=None):
-    if cemetery_name:
-        return f'{BASE_URL}/{version}/{endpoint}/{cemetery_name}/'
-    return f'{BASE_URL}/{version}/{endpoint}/'
+from api_helper import *
 
 def get_access_token(username, password):
     login_url = get_api_url(API_VERSION_V1, 'auth')
