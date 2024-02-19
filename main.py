@@ -1,16 +1,8 @@
 # main.py
-import csv
 import sys
-import requests
-
-from utilities import (
-    get_access_token,
-    request_csv_generation,
-    check_csv_status_and_download,
-    compare_csv,
-    delete_report,
-)
-from config import USERNAME, PASSWORD, DOWNLOAD_PATH, LOCAL_CSV_FILE
+# import requests
+from utilities import *
+from config import *
 
 
 def download_csv(csv_file_url, download_path):
