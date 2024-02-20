@@ -26,7 +26,7 @@ def request_report(token, report_type_suffix, cemetery_name, payload):
         report_id = report_ws.split('/')[-2]
         return report_id
     else:
-        print(f"Report generation request for {report_type_suffix} failed.")
+        print(f"Report generation request for {generate_url} {report_type_suffix} failed.")
         print(f"Status Code: {response.status_code}, Response: {response.content}")
         return None
 

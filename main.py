@@ -66,9 +66,7 @@ def main():
         ],
         "document_format": "csv",
         "sections": [],
-        "cemeteries": [
-            "Astana_Tegal_Gundul"
-        ],
+        "cemeteries": CEMETERY_NAME,
         "date_from": None,
         "date_to": None,
         "mon_year": "02/2024",
