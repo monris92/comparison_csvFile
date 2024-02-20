@@ -1,29 +1,5 @@
-import sys
 from utilities import *
-
-def process_report(token, report_type, payload, report_type_suffix):
-    report_id = request_report(token, report_type_suffix, CEMETERY_NAME, payload)
-    if report_id:
-        csv_url = check_csv_status_and_download(token, report_id)
-        if csv_url:
-            csv_path = os.path.join(DOWNLOAD_PATH, f'{report_type}_report.csv')
-            if download_csv(csv_url, csv_path):
-                if compare_with_local_template(csv_path, report_type):
-                    print(f"{report_type.capitalize()} CSV validation successful.")
-                else:
-                    print(f"{report_type.capitalize()} CSV validation failed. Data comparison did not match.")
-                    sys.exit(1)
-            else:
-                print(f"Failed to download {report_type} report CSV.")
-                sys.exit(1)
-            delete_report(token, report_id)
-        else:
-            print(f"Failed to download or validate {report_type} report CSV for report ID: {report_id}.")
-            sys.exit(1)
-    else:
-        print(f"Failed to request {report_type} report.")
-        sys.exit(1)
-
+import sys
 
 def main():
     token = get_access_token(USERNAME, PASSWORD)
@@ -32,6 +8,21 @@ def main():
         sys.exit(1)
 
     # Define payloads for different reports
+    inv_summary_payload = {
+        "attributes": [
+            "section",
+            "reserved",
+            "total",
+            "occupied",
+            "vacant",
+            "unavailable",
+            "for_sale"
+        ],
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": []
+    }
+
     people_payload = {
 
         "attributes": REPORT_ATTRS,
@@ -78,25 +69,18 @@ def main():
         "event_status": None
 }
 
-    inv_summary_payload = {
-        "attributes": [
-            "section",
-            "reserved",
-            "total",
-            "occupied",
-            "vacant",
-            "unavailable",
-            "for_sale"
-        ],
-        "document_format": "csv",
-        "sections": REPORT_SECTIONS,
-        "cemeteries": []
-    }
 
     # Process each report
-    process_report(token, 'people', people_payload, 'people/')
-    process_report(token, 'events', events_payload, 'events/')
     process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
+    # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
+    # process_report(token, 'interment', interment_payload, 'interment/')
+    # process_report(token, 'interment', interment_payload, 'interment/')
+    # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
+    # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
+    process_report(token, 'people', people_payload, 'people/')
+    # process_report(token, 'people', people_payload, 'people/')
+    process_report(token, 'events', events_payload, 'events/')
+    # process_report(token, 'events', events_payload, 'events/')
 
 
 if __name__ == "__main__":

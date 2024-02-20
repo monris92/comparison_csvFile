@@ -1,8 +1,10 @@
-import requests
-import csv
-import time
-from config import *
 from api_helper import *
+from config import *
+import requests
+import time
+import csv
+
+
 
 def get_access_token(username, password):
     login_url = get_api_url(API_VERSION_V1, 'auth')
