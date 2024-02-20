@@ -1,7 +1,11 @@
 name: Run CSV Validation
 
-on: [push]  # Bisa diatur untuk event lain seperti pull_request, schedule, dll.
-
+on:
+  push:  # Existing trigger for push events
+  schedule:
+    - cron: '00 22 * * *'  # 10 PM UTC (5 AM WIB)
+    - cron: '00 09 * * *'  # 9 AM UTC (4 PM WIB)
+    
 jobs:
   validate-csv:
     runs-on: ubuntu-latest
