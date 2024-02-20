@@ -16,45 +16,50 @@ def get_access_token(username, password):
         print(f"Status Code: {response.status_code}, Response: {response.content}")
         return None
 
-# Function to request CSV generation
-def request_csv_generation(token):
-    generate_url = get_api_url(API_VERSION_V2, 'reports/cemetery', CEMETERY_NAME) + 'generate/people/'
+def request_report(token, report_type_suffix, cemetery_name, payload):
+    generate_url = get_api_url(API_VERSION_V2, 'reports/cemetery', cemetery_name) + f'generate/{report_type_suffix}'
     generate_headers = {'Authorization': f'Bearer {token}'}
-    generate_payload = {
-        "attributes": REPORT_ATTRS,
-        "document_format": "csv",
-        "sections": REPORT_SECTIONS,
-        "cemeteries": [],
-        "chapters": REPORT_CHAPTERS
-    }
-    response = requests.post(generate_url, headers=generate_headers, json=generate_payload)
+    response = requests.post(generate_url, headers=generate_headers, json=payload)
     if response.status_code == 200:
-        print("CSV generation request successful.")
+        print(f"Report generation request for {report_type_suffix} successful.")
         report_ws = response.json()['ws']
         report_id = report_ws.split('/')[-2]
         return report_id
     else:
-        print("CSV generation request failed.")
+        print(f"Report generation request for {report_type_suffix} failed.")
         print(f"Status Code: {response.status_code}, Response: {response.content}")
         return None
 
-# Function to check the status of the CSV generation
-def check_csv_status_and_download(token):
-    status_url = get_api_url(API_VERSION_V2, 'reports/cemetery', CEMETERY_NAME) + 'status/'
+def check_csv_status_and_download(token, report_id):
+    status_url = get_api_url(API_VERSION_V2, 'reports/cemetery', CEMETERY_NAME) + f'status/{report_id}/'
     status_headers = {'Authorization': f'Bearer {token}'}
     while True:
         response = requests.get(status_url, headers=status_headers)
         if response.status_code == 200:
-            reports = response.json()
-            for report in reports:
-                if report['status'].lower() == "finished":
-                    print(f"Report {report['id']} is finished. Downloading CSV file.")
-                    return report['file']
+            report_status = response.json()['status'].lower()
+            if report_status == "finished":
+                print(f"Report {report_id} is finished. Downloading CSV file.")
+                download_url = response.json()['file']
+                return download_url
+            elif report_status == "error":
+                print(f"Report {report_id} has encountered an error.")
+                return None
             print("Waiting for report to finish...")
             time.sleep(30)  # Wait before checking again
         else:
             print(f"Failed to check report status. Status Code: {response.status_code}")
             return None
+
+def download_csv(download_url, local_file_path):
+    response = requests.get(download_url)
+    if response.status_code == 200:
+        with open(local_file_path, 'wb') as file:
+            file.write(response.content)
+        print(f"CSV downloaded successfully to {local_file_path}.")
+        return True
+    else:
+        print("Failed to download CSV.")
+        return False
 
 # Function to compare two CSV files
 def compare_csv(downloaded_csv_path, local_csv_file):
@@ -79,6 +84,14 @@ def compare_csv(downloaded_csv_path, local_csv_file):
 
     print("All validations passed.")
     return True
+
+def compare_with_local_template(downloaded_csv_path, report_type_suffix):
+    local_csv_file = LOCAL_CSV_FILES.get(report_type_suffix)
+    if not local_csv_file:
+        print(f"No local CSV template found for report type '{report_type_suffix}'.")
+        return False
+
+    return compare_csv(downloaded_csv_path, local_csv_file)
 
 # Function to delete a report
 def delete_report(token, report_id):
