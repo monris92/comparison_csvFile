@@ -61,7 +61,8 @@ def process_report(token, report_type, payload, report_type_suffix):
         if csv_url:
             csv_path = os.path.join(DOWNLOAD_PATH, f'{report_type}_report.csv')
             if download_csv(csv_url, csv_path):
-                if compare_with_local_template(csv_path, report_type):
+                if compare_with_local_template(csv_path, report_type,
+                                               LOCAL_CSV_FILES):  # Add the LOCAL_CSV_FILES argument
                     print(f"{report_type.capitalize()} CSV validation successful.")
                 else:
                     print(f"{report_type.capitalize()} CSV validation failed. Data comparison did not match.")
