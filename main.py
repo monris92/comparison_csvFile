@@ -53,30 +53,38 @@ def main():
         }
 
         events_payload = {
-            "attributes": [
-                "plot_id",
-                "event_types",
-                "event_status_id",
-                "location_type",
-                "event_date",
-                "event_purchaser",
-                "event_name",
-                "event_subtypes_id",
-                "descriptions"
-            ],
-            "document_format": "csv",
-            "sections": [],
-            "cemeteries": CEMETERY_NAME,
-            "date_from": None,
-            "date_to": None,
-            "mon_year": "02/2024",
-            "status_event": "all",
-            "assigned_party": None,
-            "responsible_person": None,
-            "event_type": 28313,
-            "event_sub_type": 32089,
-            "event_status": None
-        }
+    "attributes": [
+        "plot_id",
+        "event_name",
+        "event_types",
+        "event_subtypes_id",
+        "event_status_id",
+        "descriptions",
+        "location_type",
+        "cremation_location",
+        "event_date",
+        "start_time",
+        "end_time",
+        "repeating",
+        "assigned_party",
+        "created_by",
+        "related_interment",
+        "event_payment",
+        "event_purchaser"
+    ],
+    "document_format": "csv",
+    "sections": [],
+    "cemeteries": CEMETERY_NAME,
+    "date_from": None,
+    "date_to": None,
+    "mon_year": "02/2024",
+    "status_event": "all",
+    "assigned_party": None,
+    "responsible_person": None,
+    "event_type": 28313,
+    "event_sub_type": 32089,
+    "event_status": None
+}
 
         inv_summary_payload = {
             "attributes": [
