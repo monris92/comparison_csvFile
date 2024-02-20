@@ -12,17 +12,11 @@ def main():
     # Define payloads for different reports
     people_payload = {
 
-            "attributes":
-                REPORT_ATTRS
-            ,
+            "attributes": REPORT_ATTRS,
             "document_format": "csv",
-            "sections":
-                REPORT_SECTIONS
-            ,
+            "sections": REPORT_SECTIONS,
             "cemeteries": [],
-            "chapters":
-                REPORT_CHAPTERS
-            ,
+            "chapters": REPORT_CHAPTERS,
             "first_name": None,
             "last_name": None
 
@@ -40,9 +34,7 @@ def main():
             ],
             "document_format": "pdf",
             "sections": [],
-            "cemeteries":
-                CEMETERY_NAME
-            ,
+            "cemeteries": CEMETERY_NAME,
             "chapters": [
                 "roi_holders",
                 "roi_applicants",
@@ -56,7 +48,7 @@ def main():
     }
 
     inv_summary_payload = {
-        {
+
             "attributes": [
                 "section",
                 "reserved"
@@ -64,7 +56,7 @@ def main():
             "document_format": "csv",
             "sections": [],
             "cemeteries": CEMETERY_NAME
-        }
+
     }
 
     # Request and process 'people' report
