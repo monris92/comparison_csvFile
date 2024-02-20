@@ -1,85 +1,80 @@
-Interment applicants
-Plot id
-A A 2
+Interment applicants,Plot id
+,A A 2
 
-Interments
-Plot id
-A D 1
-A D 2
-A D 6
-A D 6
-A D 7
-B A 1
-B A 2
-B A 3
-B A 4
-B A 6
-B A 7
-B A 8
-B A 9
-B A 10
-B A 11
-B A 11
-B A 11
-B A 12
-B A 12
-B A 12
-B A 12
-B A 12
-B B 2
-B B 6
-B B 6
-B B 8
-B B 10
-B B 11
-A C 127
-A C 10
-A B 2
-A B 3
-A B 3
-A B 4
-A B 6
-A B 9
-A B 10
-A B 10
-A B 11
-A B 12
-A B 13
-A A 1
-A A 2
-A A 4
-A E 2
-A F 1
- 
-ROI holders
-Plot id
-A D 2
-A D 6
-A D 6
-A D 7
-B A 2
-B G 1
-B G 11
-B G 12
-B G 13
-A C 2
-A B 1
-A B 1
-A A 1
-A E 1
-A G 2
-A G 3
- 
-ROI applicants
-Plot id
-A D 6
-B B 12
-A C 2
-A B 10
-A A 1
- 
-Next of kins
-Plot id
-A D 1
-A B 13
-A A 2
+Interments,Plot id
+,A D 1
+,A D 2
+,A D 6
+,A D 6
+,A D 7
+,B A 1
+,B A 2
+,B A 3
+,B A 4
+,B A 6
+,B A 7
+,B A 8
+,B A 9
+,B A 10
+,B A 11
+,B A 11
+,B A 11
+,B A 12
+,B A 12
+,B A 12
+,B A 12
+,B A 12
+,B B 2
+,B B 6
+,B B 6
+,B B 8
+,B B 10
+,B B 11
+,A C 127
+,A C 10
+,A B 2
+,A B 3
+,A B 3
+,A B 4
+,A B 6
+,A B 9
+,A B 10
+,A B 10
+,A B 11
+,A B 12
+,A B 13
+,A A 1
+,A A 2
+,A A 4
+,A E 2
+,A F 1
+
+ROI holders,Plot id
+,A D 2
+,A D 6
+,A D 6
+,A D 7
+,B A 2
+,B G 1
+,B G 11
+,B G 12
+,B G 13
+,A C 2
+,A B 1
+,A B 1
+,A A 1
+,A E 1
+,A G 2
+,A G 3
+
+ROI applicants,Plot id
+,A D 6
+,B B 12
+,A C 2
+,A B 10
+,A A 1
+
+Next of kins,Plot id
+,A D 1
+,A B 13
+,A A 2
