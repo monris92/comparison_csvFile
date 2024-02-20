@@ -1,5 +1,5 @@
-from utilities import *
-import sys
+from report_utils import *
+from config import *
 
 def main():
     token = get_access_token(USERNAME, PASSWORD)
@@ -69,7 +69,6 @@ def main():
         "event_status": None
 }
 
-
     # Process each report
     process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
     # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
@@ -81,7 +80,6 @@ def main():
     # process_report(token, 'people', people_payload, 'people/')
     process_report(token, 'events', events_payload, 'events/')
     # process_report(token, 'events', events_payload, 'events/')
-
 
 if __name__ == "__main__":
     main()
