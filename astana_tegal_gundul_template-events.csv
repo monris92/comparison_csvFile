@@ -1,14 +1,14 @@
 Events
-Cemetery;Plot id;Event name;Event types;Event location;Event date
-Astana_Tegal_Gundul;B B 3;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;Plot;06/02/2024
-Astana_Tegal_Gundul;B B 3;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;Plot;06/02/2024
-Astana_Tegal_Gundul;B B 4;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;Plot;06/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;Plot;06/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;Plot;06/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;Plot;06/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;Plot;12/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;Plot;12/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_Theresa on plot B B 5;Purchase Plot;Plot;12/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_pre_Derick on plot B B 5;Purchase Plot;Plot;12/02/2024
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_at_Samanta on plot B B 5;Purchase Plot;Plot;12/02/2024
+Cemetery;Plot id;Event name;Event types;Descriptions;Event location;Event date;Event purchaser;Purchaser email;Purchaser phone;Primary address;Primary suburb;Primary state;Primary country;Primary postcode;Secondary address;Secondary suburb;Secondary state;Secondary country;Secondary postcode
+Astana_Tegal_Gundul;B B 3;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;The event decline with reason '';Plot;06/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 3;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;The event decline with reason '';Plot;06/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 4;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;bbb. The event decline with reason '';Plot;06/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;06/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;mm. The event decline with reason '';Plot;06/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;06/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;12/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;12/02/2024;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_Theresa on plot B B 5;Purchase Plot;The event decline with reason '';Plot;12/02/2024;FN_ROI_Theresa Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_pre_Derick on plot B B 5;Purchase Plot;;Plot;12/02/2024;FN_ROI_pre_Derick Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_at_Samanta on plot B B 5;Purchase Plot;;Plot;12/02/2024;FN_ROI_at_Samanta Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
  
