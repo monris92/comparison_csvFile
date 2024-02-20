@@ -23,40 +23,60 @@ def main():
     }
 
     events_payload = {
-
             "attributes": [
                 "plot_id",
-                "person_name",
-                "contact_number",
-                "contact_address",
-                "postal_address",
-                "roi_payment_date"
-            ],
-            "document_format": "pdf",
-            "sections": [],
-            "cemeteries": CEMETERY_NAME,
-            "chapters": [
-                "roi_holders",
-                "roi_applicants",
-                "interments",
-                "next_of_kins",
-                "interment_applicants"
-            ],
-            "first_name": "",
-            "last_name": None
-
-    }
-
-    inv_summary_payload = {
-
-            "attributes": [
-                "section",
-                "reserved"
+                "event_name",
+                "event_types",
+                "event_subtypes_id",
+                "event_status_id",
+                "descriptions",
+                "location_type",
+                "cremation_location",
+                "event_date",
+                "start_time",
+                "end_time",
+                "repeating",
+                "assigned_party",
+                "created_by",
+                "related_interment",
+                "event_payment",
+                "event_purchaser",
+                "story_data_id",
+                "responsible_person",
+                "cover_image"
             ],
             "document_format": "csv",
             "sections": [],
-            "cemeteries": CEMETERY_NAME
+            "cemeteries": [
+                "Cootamundra_Cemetery"
+            ],
+            "date_from": None,
+            "date_to": None,
+            "mon_year": "11/2023",
+            "status_event": "Upcoming",
+            "assigned_party": None,
+            "responsible_person": None,
+            "event_type": None,
+            "event_sub_type": None,
+            "event_status": None
+    }
 
+    inv_summary_payload = {
+            "attributes": [
+                "section",
+                "reserved",
+                "total",
+                "occupied",
+                "vacant",
+                "unavailable",
+                "for_sale"
+            ],
+            "document_format": "csv",
+            "sections": [
+                "Section A",
+                "Section B"
+            ],
+            "cemeteries": []
     }
 
     # Request and process 'people' report
