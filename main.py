@@ -1,7 +1,6 @@
 import sys
 from utilities import *
 
-
 def process_report(token, report_type, payload, report_type_suffix):
     report_id = request_report(token, report_type_suffix, CEMETERY_NAME, payload)
     if report_id:
@@ -25,6 +24,7 @@ def process_report(token, report_type, payload, report_type_suffix):
         print(f"Failed to request {report_type} report.")
         sys.exit(1)
 
+
 def main():
     token = get_access_token(USERNAME, PASSWORD)
     if not token:
@@ -34,66 +34,62 @@ def main():
     # Define payloads for different reports
     people_payload = {
 
-            "attributes": REPORT_ATTRS,
-            "document_format": "csv",
-            "sections": REPORT_SECTIONS,
-            "cemeteries": [],
-            "chapters": REPORT_CHAPTERS,
-            "first_name": None,
-            "last_name": None
+        "attributes": REPORT_ATTRS,
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": [],
+        "chapters": REPORT_CHAPTERS,
+        "first_name": None,
+        "last_name": None
 
     }
 
     events_payload = {
-    "attributes": [
-        "plot_id",
-        "event_types",
-        "event_status_id",
-        "location_type",
-        "event_date",
-        "event_purchaser",
-        "event_name",
-        "event_subtypes_id",
-        "descriptions"
-    ],
-    "document_format": "csv",
-    "sections": [],
-    "cemeteries": [
-        "Astana_Tegal_Gundul"
-    ],
-    "date_from": None,
-    "date_to": None,
-    "mon_year": "02/2024",
-    "status_event": "all",
-    "assigned_party": None,
-    "responsible_person": None,
-    "event_type": 28313,
-    "event_sub_type": 32089,
-    "event_status": None
-}
-
-    inv_summary_payload = {
-            "attributes": [
-                "section",
-                "reserved",
-                "total",
-                "occupied",
-                "vacant",
-                "unavailable",
-                "for_sale"
-            ],
-            "document_format": "csv",
-            "sections": [
-                "Section A",
-                "Section B"
-            ],
-            "cemeteries": []
+        "attributes": [
+            "plot_id",
+            "event_types",
+            "event_status_id",
+            "location_type",
+            "event_date",
+            "event_purchaser",
+            "event_name",
+            "event_subtypes_id",
+            "descriptions"
+        ],
+        "document_format": "csv",
+        "sections": [],
+        "cemeteries": CEMETERY_NAME,
+        "date_from": None,
+        "date_to": None,
+        "mon_year": "02/2024",
+        "status_event": "all",
+        "assigned_party": None,
+        "responsible_person": None,
+        "event_type": 28313,
+        "event_sub_type": 32089,
+        "event_status": None
     }
 
- # Process each report
+    inv_summary_payload = {
+        "attributes": [
+            "section",
+            "reserved",
+            "total",
+            "occupied",
+            "vacant",
+            "unavailable",
+            "for_sale"
+        ],
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": []
+    }
+
+    # Process each report
     process_report(token, 'people', people_payload, 'people/')
     process_report(token, 'events', events_payload, 'events/')
     process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
+
 
 if __name__ == "__main__":
     main()
