@@ -1,48 +1,46 @@
 # Report Validation Guide
 
 ## Overview
-This guide covers the process of downloading, validating, and comparing cemetery reports using our software. The validation ensures that the downloaded report matches the expected reference file in terms of layout and data consistency.
+This guide provides instructions on how to use our software to download, validate, and compare cemetery reports. The validation process ensures that the downloaded reports correctly align with the expected reference templates, both in format and data integrity.
 
 ## Prerequisites
-- Ensure you have Python installed on your system.
-- Install necessary Python packages if not already installed: `requests`, `csv`, `time`.
-- Configure `config.py` with necessary details like `BASE_URL`, `API_VERSION`, `CEMETERY_NAME`, `USERNAME`, `PASSWORD`, `LOCAL_CSV_FILE`, and `DOWNLOAD_PATH`.
+- Python must be installed on your system.
+- All required Python dependencies should be installed: `requests`, `csv`, `os`, `sys`, and `time`.
+- The `config.py` file should be set up with the necessary configurations, such as `BASE_URL`, `API_VERSION`, `CEMETERY_NAME`, plus authentication credentials and file paths.
 
-## Steps
+## Configuration Setup
+Set the appropriate values in `config.py`:
 
-### 1. Configuration
-Before running the script, you must configure the system by setting the following variables in `config.py`:
+- `BASE_URL`: The API's base URL.
+- `API_VERSION`: The version of the API in use.
+- `CEMETERY_NAME`: The target cemetery name for report management.
+- `USERNAME`, `PASSWORD`: The API authentication credentials.
+- `LOCAL_CSV_FILES`: A dictionary mapping report types to paths of local reference CSV templates.
+- `DOWNLOAD_PATH`: Directory path where CSV reports will be downloaded.
 
-- `BASE_URL`: The base URL of the server where the API is hosted.
-- `API_VERSION`: The API version you are interacting with.
-- `CEMETERY_NAME`: The name of the cemetery you are managing.
-- `USERNAME` and `PASSWORD`: Credentials for API authentication.
-- `LOCAL_CSV_FILE`: The full path to the local CSV file that will be used as a reference for validation.
-- `DOWNLOAD_PATH`: The path where the downloaded CSV reports will be temporarily stored.
+## Process Workflow
 
-### 2. Generating a Report
-Run the `main.py` script. This will authenticate with the server, request CSV report generation, and wait for the report to be prepared.
+### 1. Authentication
+Run `auth.py`, which first authenticates against the API using the provided credentials and retrieves an access token.
 
-### 3. Downloading the Report
-Once the report is ready, the script will automatically download it to the `DOWNLOAD_PATH`.
+### 2. Report Generation
+The script requests report generation from the API. It waits until the report is processed and ready for download.
 
-### 4. Validating the Report
-The script will then compare the downloaded report against the `LOCAL_CSV_FILE`:
+### 3. Report Retrieval
+After report readiness is confirmed, the script downloads it to the specified `DOWNLOAD_PATH`.
 
-- It checks if both files have the same number of rows and columns.
-- It validates that every cell in the downloaded CSV matches the corresponding cell in the reference CSV.
-- If any discrepancies are found, the script will output an error indicating the row and column of the mismatch.
+### 4. Report Validation
+The script compares the downloaded report with the corresponding reference template in `LOCAL_CSV_FILES`:
 
-### 5. Cleaning Up
-If the validation is successful, the script will delete the generated report from the server to maintain cleanliness and prevent data clutter.
+- It verifies that both files match in the number of rows and columns.
+- It checks each cell for data consistency.
+- Discrepancies are reported, detailing the specific location(s) within the file where mismatches occur.
+
+### 5. Clean-Up
+Upon successful validation, the script instructs the server to delete the generated report, ensuring efficient data management.
 
 ## Usage
-Simply execute the script from the command line:
+Execute the script via the command line with:
 
 ```bash
 python main.py
-```
-
-Follow any on-screen prompts, and the script will handle the rest.
-
----
