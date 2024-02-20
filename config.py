@@ -24,7 +24,7 @@ PASSWORD = os.environ['PASS_SUPER_ADMIN']
 
 # Filepaths
 LOCAL_CSV_FILES = {
-    'people': 'astana_tegal_gundul_template-people.csv',
-    'events': 'astana_tegal_gundul_template-events.csv',
-    'inv_summary': 'astana_tegal_gundul_template-inv_summary.csv'
+    'people': 'data_file/astana_tegal_gundul_template-people.csv',
+    'events': 'data_file/astana_tegal_gundul_template-events.csv',
+    'inv_summary': 'data_file/astana_tegal_gundul_template-inv_summary.csv'
 }
