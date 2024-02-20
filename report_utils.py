@@ -1,8 +1,9 @@
+import sys
+import time
+
 from config import *
 from file_utils import *
-import requests
-import time
-import sys
+
 
 def request_report(token, report_type_suffix, cemetery_name, payload):
     generate_url = get_api_url(API_VERSION_V2, 'reports/cemetery', cemetery_name) + f'generate/{report_type_suffix}'
@@ -17,6 +18,7 @@ def request_report(token, report_type_suffix, cemetery_name, payload):
         print(f"Report generation request for {generate_url} {report_type_suffix} failed.")
         print(f"Status Code: {response.status_code}, Response: {response.content}")
         return None
+
 
 def check_csv_status_and_download(token, report_id):
     status_url = get_api_url(API_VERSION_V2, 'reports/cemetery', CEMETERY_NAME) + f'status/{report_id}/'
@@ -38,6 +40,7 @@ def check_csv_status_and_download(token, report_id):
             print(f"Failed to check report status. Status Code: {response.status_code}")
             return None
 
+
 # Function to delete a report
 def delete_report(token, report_id):
     delete_url = get_api_url(API_VERSION_V1, 'reports/cemetery', CEMETERY_NAME) + f'delete/{report_id}/'
@@ -47,12 +50,15 @@ def delete_report(token, report_id):
     if response.status_code == 204:
         print(f"Report with ID: {report_id} has been successfully deleted.")
     else:
-        print(f"Failed to delete report with ID: {report_id}. Status Code: {response.status_code}, Response: {response.content}")
+        print(
+            f"Failed to delete report with ID: {report_id}. Status Code: {response.status_code}, Response: {response.content}")
+
 
 def get_api_url(version, endpoint, cemetery_name=None):
     if cemetery_name:
         return f'{BASE_URL}/{version}/{endpoint}/{cemetery_name}/'
     return f'{BASE_URL}/{version}/{endpoint}/'
+
 
 def process_report(token, report_type, payload, report_type_suffix):
     report_id = request_report(token, report_type_suffix, CEMETERY_NAME, payload)

@@ -1,6 +1,7 @@
 from auth import *
-from report_utils import *
 from config import *
+from report_utils import *
+
 
 def main():
     token = get_access_token(USERNAME, PASSWORD)
@@ -68,7 +69,7 @@ def main():
         "event_type": 28313,
         "event_sub_type": 32089,
         "event_status": None
-}
+    }
 
     # Process each report
     process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
@@ -81,6 +82,7 @@ def main():
     # process_report(token, 'people', people_payload, 'people/')
     process_report(token, 'events', events_payload, 'events/')
     # process_report(token, 'events', events_payload, 'events/')
+
 
 if __name__ == "__main__":
     main()

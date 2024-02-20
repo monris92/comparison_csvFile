@@ -1,8 +1,11 @@
 import requests
+
 from config import BASE_URL, API_VERSION_V1
+
 
 def get_api_url(endpoint):
     return f'{BASE_URL}/{API_VERSION_V1}/{endpoint}/'
+
 
 def get_access_token(username, password):
     login_url = get_api_url('auth')

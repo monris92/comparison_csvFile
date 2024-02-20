@@ -1,5 +1,7 @@
 import csv
+
 import requests
+
 
 def download_csv(download_url, local_file_path):
     response = requests.get(download_url)
@@ -11,6 +13,7 @@ def download_csv(download_url, local_file_path):
     else:
         print("Failed to download CSV.")
         return False
+
 
 def compare_csv(downloaded_csv_path, local_csv_file):
     with open(downloaded_csv_path, newline='', encoding='utf-8') as downloaded_file:
@@ -34,6 +37,7 @@ def compare_csv(downloaded_csv_path, local_csv_file):
 
     print("All validations passed.")
     return True
+
 
 def compare_with_local_template(downloaded_csv_path, report_type_suffix, local_csv_files):
     local_csv_file = local_csv_files.get(report_type_suffix)
