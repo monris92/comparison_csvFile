@@ -1,7 +1,29 @@
 import sys
-import os
 from utilities import *
-from config import *
+
+
+def process_report(token, report_type, payload, report_type_suffix):
+    report_id = request_report(token, report_type_suffix, CEMETERY_NAME, payload)
+    if report_id:
+        csv_url = check_csv_status_and_download(token, report_id)
+        if csv_url:
+            csv_path = os.path.join(DOWNLOAD_PATH, f'{report_type}_report.csv')
+            if download_csv(csv_url, csv_path):
+                if compare_with_local_template(csv_path, report_type):
+                    print(f"{report_type.capitalize()} CSV validation successful.")
+                else:
+                    print(f"{report_type.capitalize()} CSV validation failed. Data comparison did not match.")
+                    sys.exit(1)
+            else:
+                print(f"Failed to download {report_type} report CSV.")
+                sys.exit(1)
+            delete_report(token, report_id)
+        else:
+            print(f"Failed to download or validate {report_type} report CSV for report ID: {report_id}.")
+            sys.exit(1)
+    else:
+        print(f"Failed to request {report_type} report.")
+        sys.exit(1)
 
 def main():
     token = get_access_token(USERNAME, PASSWORD)
@@ -79,53 +101,10 @@ def main():
             "cemeteries": []
     }
 
-    # Request and process 'people' report
-    people_report_id = request_report(token, 'people/', CEMETERY_NAME, people_payload)
-    if people_report_id:
-        people_csv_url = check_csv_status_and_download(token, people_report_id)
-        if people_csv_url:
-            people_csv_path = os.path.join(DOWNLOAD_PATH, 'people_report.csv')
-            if download_csv(people_csv_url, people_csv_path):
-                if compare_with_local_template(people_csv_path, 'people'):
-                    print("People CSV validation successful.")
-                else:
-                    print("People CSV validation failed.")
-            delete_report(token, people_report_id)
-        else:
-            print("Failed to download or validate 'people' report CSV.")
-            sys.exit(1)
-
-    # Request and process 'events' report
-    events_report_id = request_report(token, 'events/', CEMETERY_NAME, events_payload)
-    if events_report_id:
-        events_csv_url = check_csv_status_and_download(token, events_report_id)
-        if events_csv_url:
-            events_csv_path = os.path.join(DOWNLOAD_PATH, 'events_report.csv')
-            if download_csv(events_csv_url, events_csv_path):
-                if compare_with_local_template(events_csv_path, 'events'):
-                    print("Events CSV validation successful.")
-                else:
-                    print("Events CSV validation failed.")
-            delete_report(token, events_report_id)
-        else:
-            print("Failed to download or validate 'events' report CSV.")
-            sys.exit(1)
-
-    # Request and process 'inv_summary' report
-    inv_summary_report_id = request_report(token, 'inv_summary/', CEMETERY_NAME, inv_summary_payload)
-    if inv_summary_report_id:
-        inv_summary_csv_url = check_csv_status_and_download(token, inv_summary_report_id)
-        if inv_summary_csv_url:
-            inv_summary_csv_path = os.path.join(DOWNLOAD_PATH, 'inv_summary_report.csv')
-            if download_csv(inv_summary_csv_url, inv_summary_csv_path):
-                if compare_with_local_template(inv_summary_csv_path, 'inv_summary'):
-                    print("Inventory Summary CSV validation successful.")
-                else:
-                    print("Inventory Summary CSV validation failed.")
-            delete_report(token, inv_summary_report_id)
-        else:
-            print("Failed to download or validate 'inv_summary' report CSV.")
-            sys.exit(1)
+ # Process each report
+    process_report(token, 'people', people_payload, 'people/')
+    process_report(token, 'events', events_payload, 'events/')
+    process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
 
 if __name__ == "__main__":
     main()
