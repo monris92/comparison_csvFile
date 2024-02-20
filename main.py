@@ -66,7 +66,7 @@ def main():
         ],
         "document_format": "csv",
         "sections": [],
-        "cemeteries": CEMETERY_NAME,
+        "cemeteries": [CEMETERY_NAME],
         "date_from": None,
         "date_to": None,
         "mon_year": "02/2024",

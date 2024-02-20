@@ -16,7 +16,7 @@ REPORT_CHAPTERS = [
     "next_of_kins",
     "interment_applicants",
 ]
-CEMETERY_NAME = ["Astana_Tegal_Gundul"]
+CEMETERY_NAME = "Astana_Tegal_Gundul"
 
 # Credentials (should be environment variables for security)
 USERNAME = os.environ['USER_SUPER_ADMIN']
