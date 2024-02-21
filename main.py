@@ -86,8 +86,8 @@ def main():
     }
 
     # Process each report
-    process_report(token, 'inv_summary', inv_summary_payload_section, 'inv_summary/')
-    process_report(token, 'inv_summary', inv_summary_payload_cemetery, 'inv_summary/')
+    process_report(token, 'inv_summary_section', inv_summary_payload_section, 'inv_summary/')
+    process_report(token, 'inv_summary_sections', inv_summary_payload_cemetery, 'inv_summary/')
     # process_report(token, 'interment', interment_payload, 'interment/')
     # process_report(token, 'interment', interment_payload, 'interment/')
     # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
