@@ -24,8 +24,16 @@ PASSWORD = os.environ['PASS_SUPER_ADMIN']
 
 # Filepaths
 LOCAL_CSV_FILES = {
-    'people': 'data_file/astana_tegal_gundul_template-people.csv',
-    'events': 'data_file/astana_tegal_gundul_template-events.csv',
-    'inv_summary_section': 'data_file/astana_tegal_gundul_template-inv_summary_section.csv',
-    'inv_summary_cemetery': 'data_file/astana_tegal_gundul_template-inv_summary_cemetery.csv'
+    'inv_summary_cemetery': 'data_file/astana_tegal_gundul_template-inv_summary_cemetery.csv',
+    'inv_summary_sections': 'data_file/astana_tegal_gundul_template-inv_summary_sections.csv',
+    'interment_cemetery': 'data_file/astana_tegal_gundul_template-interments_cemetery.csv',
+    'interment_sections': 'data_file/astana_tegal_gundul_template-interments_sections.csv',
+    'people_cemetery': 'data_file/astana_tegal_gundul_template-people_cemetery.csv',
+    'people_sections': 'data_file/astana_tegal_gundul_template-people_sections.csv',
+    'business_cemetery': 'data_file/astana_tegal_gundul_template-business_cemetery.csv',
+    'business_sections': 'data_file/astana_tegal_gundul_template-business_sections.csv',
+
+
+    'events': 'data_file/astana_tegal_gundul_template-events.csv'
+
 }

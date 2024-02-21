@@ -9,6 +9,22 @@ def main():
         sys.exit(1)
 
     # Define payloads for different reports
+
+    inv_summary_payload_cemetery = {
+        "attributes": [
+            "section",
+            "reserved",
+            "total",
+            "occupied",
+            "vacant",
+            "unavailable",
+            "for_sale"
+        ],
+        "document_format": "csv",
+        "sections": [],
+        "cemeteries": [CEMETERY_NAME]
+    }
+
     inv_summary_payload_section = {
         "attributes": [
             "section",
@@ -24,31 +40,107 @@ def main():
         "cemeteries": []
     }
 
-    inv_summary_payload_cemetery = {
+    # interment_payload_cemetery = {}
+
+    interment_payload_section = {
         "attributes": [
-            "section",
-            "reserved",
-            "total",
-            "occupied",
-            "vacant",
-            "unavailable",
-            "for_sale"
+            "plot_id",
+            "date_of_birth",
+            "name",
+            "date_of_death",
+            "interment_date",
+            "interments_type",
+            "funeral_director",
+            "religion",
+            "funeral_minister",
+            "interment_number",
+            "next_of_kin",
+            "cremation_location",
+            "interment_depth",
+            "container_type",
+            "age",
+            "container_dimensions",
+            "returned_serviceman",
+            "applicant_relationship",
+            "occupation",
+            "next_of_kin_relationship",
+            "cause_of_death"
         ],
         "document_format": "csv",
+        "custom_fields": [
+            "astana_tegal_gundul_maiden_name",
+            "astana_tegal_gundul_baby_section",
+            "astana_tegal_gundul_military_branch"
+        ],
         "sections": REPORT_SECTIONS,
-        "cemeteries": []
+        "cemeteries": [],
+        "date_from": None,
+        "date_to": None
     }
 
-    people_payload = {
+    people_payload_cemetery = {
 
         "attributes": REPORT_ATTRS,
         "document_format": "csv",
-        "sections": REPORT_SECTIONS,
-        "cemeteries": [],
+        "sections": [],
+        "cemeteries": [CEMETERY_NAME],
         "chapters": REPORT_CHAPTERS,
         "first_name": None,
         "last_name": None
 
+    }
+
+    people_payload_sections = {
+        "attributes": [
+            "plot_id",
+            "person_name",
+            "contact_number",
+            "contact_address",
+            "postal_address",
+            "email",
+            "roi_certificate",
+            "roi_payment_date",
+            "interment_date",
+            "interment_type",
+            "interment_number",
+            "date_of_birth",
+            "date_of_death",
+            "age"
+        ],
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": [],
+        "chapters": [
+            "roi_holders",
+            "roi_applicants",
+            "interments",
+            "next_of_kins",
+            "interment_applicants"
+        ],
+        "first_name": None,
+        "last_name": None
+    }
+
+    business_payload_cemetery = {}
+
+    business_payload_sections = {
+        "attributes": [
+            "business_name",
+            "person_name",
+            "contact_number",
+            "contact_address",
+            "postal_address",
+            "email"
+        ],
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": [],
+        "chapters": [
+            "funeral_ministers",
+            "funeral_directors",
+            "interment_applicants"
+        ],
+        "business_name": None
     }
 
     events_payload = {
@@ -85,18 +177,32 @@ def main():
         "event_status": None
     }
 
-    # Process each report,
-    process_report(token, 'inv_summary_section', inv_summary_payload_section, 'inv_summary/')
-    process_report(token, 'inv_summary_cemetery', inv_summary_payload_cemetery, 'inv_summary/')
-    # process_report(token, 'interment', interment_payload, 'interment/')
-    # process_report(token, 'interment', interment_payload, 'interment/')
-    # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
-    # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
-    process_report(token, 'people', people_payload, 'people/')
-    # process_report(token, 'people', people_payload, 'people/')
+    # Process each report
+    # process_report(token, 'inv_summary_cemetery', inv_summary_payload_cemetery, 'inv_summary/'),
+    process_report(token, 'inv_summary_sections', inv_summary_payload_section, 'inv_summary/')
+
+    # process_report(token, 'interment_cemetery', interment_payload_cemetery, 'interment/')
+    process_report(token, 'interment_sections', interment_payload_section, 'interment/')
+
+    # process_report(token, 'people_cemetery', people_payload_cemetery, 'people/')
+    process_report(token, 'people_sections', people_payload_sections, 'people/')
+
+    # process_report(token, 'business_cemetery', business_payload_cemetery, 'business/')
+    process_report(token, 'business_sections', business_payload_sections, 'business/')
+
     process_report(token, 'events', events_payload, 'events/')
+
     # process_report(token, 'events', events_payload, 'events/')
 
+    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/inv_summary/ done
+    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/interments/ done
+    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/people/ done
+    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/business/
+
+
+# - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/act_summary/
+# - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/roi/
+# - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/log_activity/
 
 if __name__ == "__main__":
     main()

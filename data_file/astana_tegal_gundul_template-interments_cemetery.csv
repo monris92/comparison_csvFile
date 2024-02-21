@@ -1,0 +1,49 @@
+Interments
+Plot id;First names;Last name;Funeral director;Funeral minister;Next of kin;Interment depth;Age;Returned Service Person;Occupation;Cause of death';Interment date;Date of birth;Date of death;Interment type;Religion;Interment number;Cremation location;Container type;Container dimensions;Applicant relationship;Next of kin relationship;astana_tegal_gundul_maiden_name;astana_tegal_gundul_baby_section;astana_tegal_gundul_military_branch;Maiden name;Baby section;Military Branch
+A D 1;Bob;Smith;;;N K;;;False;;;;;;Burial;;19;;Other;;;Cousin;;;
+A D 2;John;Doe;;;;;;False;;;;;;Burial;;21;;Other;;;;;;
+A D 6;Adam;Jack;;;;;;False;;;;;;Burial;;52;;Other;;;;;;
+A D 6;Gogon;Jack;;;;;;False;;;;;;Burial;;53;;Other;;;;;;
+A D 7;Johny;djanggo;;;;;;False;;;;;;Burial;;7;;Other;;;;;;
+B A 1;I Made;Sura;;;;;64;False;;;;31/12/1954;12/12/2019;Burial;;3;;Other;;;;;;Air
+B A 2;みやび;深田;;;;;;False;;;;;;Burial;;11;;Other;;;;;;
+B A 3;Ni Made;Regreg;;;;;91;False;;;;31/12/1928;17/04/2020;Burial;;4;;Other;;;;;;
+B A 4;No;Name;;;;;;False;;;;;;Burial;;5;;Other;;;;;;
+B A 6;Burial;Monument;;;;;;False;;;;;;Burial;;9;;Other;;;;;;
+B A 7;daaaa;dddwdad;;;;;10;False;;;;01/01/1999;01/01/2003;Cremated;;22;;Vault;;;;;;
+B A 8;dd;d;;;;;;False;;;;;;Entombment;;29;;Urn;;;;;;
+B A 9;dad;dd;;;;;;False;;;;;;Cremated;;30;;Other;;;;;;
+B A 10;B A 10;test;BN Funeral Director;BN Funeral Minister;;;;False;;;;;;Burial;;31;;Natural;;;;;;
+B A 11;test;aaaa;;;;;;False;;;;;;Cremated;;32;;Coffin;;;;;;
+B A 11;testing;burial;;;;;;False;;;;;;Burial;;41;;Other;;;;;;
+B A 11;dadd;test;;;;;;False;;;;;;Memorial;;44;;Other;;;;;;
+B A 12;add;burial;;;;;;False;;;;;;Burial;;45;;Casket;;;;;;
+B A 12;6es6;yudauy;;;;;;False;;;;;;Memorial;;46;;Other;;;;;;
+B A 12;test;ueiuieie;;;;;;False;;;;;;Burial;;47;;Other;;;;;;
+B A 12;uauidi;ioiwwioac;;;;;;False;;;;;;Cremated;;48;;Other;;;;;;
+B A 12;dad;dede;;;;;;False;;;;;;Burial;;49;;Other;;;;;;
+B B 2;Hilary;Mason;;;;;54;False;teacher;;15/04/2022;01/01/1945;01/01/1999;Burial;;17;;Other;;;;;;
+B B 6;dada;dada;;;;;;False;;;;;;Cremated;;26;;Other;;;;;;
+B B 6;da;dada;;;;;;False;;;;;;Cremated;;28;;Other;;;;;;
+B B 8;da;da;;;;;;False;;;;;;Cremated;;27;;Other;;;;;;
+B B 10;Joshua;Wallamby;;;;;;False;;;;;;Memorial;;15;;Other;;;;;;
+B B 11;Galang;K;Galang;;;;;False;;;;;;Burial;;17;;Other;;;;;;
+A C 127;John;Johnson;;;;12.0;62;True;;;;01/01/1956;02/01/2018;Cremated;;51;;Other;;;;;;
+A C 10;अर्जुन;Kerta;;;;;;False;;;;;;Burial;;13;;Other;;;;;;
+A B 2;Test;Test;;;;;2 months;False;;;;01/03/2022;18/05/2022;Burial;;20;;Other;;;;;;
+A B 3;Test;Person12;;;;;67;False;;;;17/05/1953;12/02/2021;Burial;;16;;Other;;;;;;
+A B 3;Test;Person;;;;;67;False;;;;17/05/1953;12/02/2021;Burial;;18;;Other;;;;;;
+A B 4;New;Livy;;;;;;False;;;;;;Burial;;50;;Other;;;;;;
+A B 6;wayan;budi;;;;;;False;;;;;;Cremated;;14;;Other;;;;;;
+A B 9;John;Smith;;;;2.0;82;True;Teacher;Pnemonia;25/02/2023;25/07/1819;10/09/1901;Burial;Catholic;14;;Coffin;;;;Will Champion;;
+A B 10;Passed;Person;;;;;Infant;False;;;26/05/2022;01/01/2022;01/01/2022;Burial;;15;;Other;;;;;;
+A B 10;test;test;;;;;;False;;;;;;Memorial;;19;;Other;;;;;;
+A B 11;hana;taka;;;;;10 months;False;;;;01/01/2021;04/05/2022;Burial;;21;;Other;;;;;;
+A B 12;FN deceased;LN deceased;;;;;;False;;;;;;Burial;;16;;Other;;;;;;
+A B 13;Cuma;Ngetes;PT Ngetesia Arnoldi;;Alcuma Ngetesia;;;False;;;;;;Burial;;18;;Other;;;;;;
+A A 1;Test;Interment;;;;;22;False;;;;;;Burial;;13350;;Other;;;;;;
+A A 2;firs name;last name;;;FN next of kin aa-2 LN next of kin aa-2;;1;True;;;;01/01/2000;01/01/2001;Burial;;;;Other;;;;;;
+A A 4;building;a;;;;;;False;;;;;;Memorial;;10;;Other;;;;;;
+A E 2;Blake;Sheldon;;;;;23;False;;;;14/06/2000;08/11/2023;Burial;;20;;Other;;;;;;
+A F 1;John;Smith;;;;;;False;;;;;;Cremated;;13;;Other;;;;;Yes;
+ 
