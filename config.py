@@ -34,7 +34,8 @@ LOCAL_CSV_FILES = {
     'business_sections': 'data_file/astana_tegal_gundul_template-business_sections.csv',
     'ROI_cemetery': 'data_file/astana_tegal_gundul_template-ROI_cemetery.csv',
     'ROI_sections': 'data_file/astana_tegal_gundul_template-ROI_sections.csv',
-
+    'act_summary_cemetery': 'data_file/astana_tegal_gundul_template-act_summary_cemetery.csv',
+    'act_summary_sections': 'data_file/astana_tegal_gundul_template-act_summary_sections.csv',
 
     'events': 'data_file/astana_tegal_gundul_template-events.csv'
 

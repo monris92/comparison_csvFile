@@ -42,39 +42,43 @@ def main():
 
     interment_payload_cemetery = {
         "attributes": [
-            "plot_id",
-            "date_of_birth",
-            "name",
-            "date_of_death",
-            "interment_date",
-            "interments_type",
-            "funeral_director",
-            "religion",
-            "funeral_minister",
-            "interment_number",
-            "next_of_kin",
-            "cremation_location",
-            "interment_depth",
-            "container_type",
-            "age",
-            "container_dimensions",
-            "returned_serviceman",
-            "applicant_relationship",
-            "occupation",
-            "next_of_kin_relationship",
-            "cause_of_death"
+            "section",
+            "entombment",
+            "burial",
+            "other",
+            "cremation"
         ],
         "document_format": "csv",
-        "custom_fields": [
-            "astana_tegal_gundul_maiden_name",
-            "astana_tegal_gundul_baby_section",
-            "astana_tegal_gundul_military_branch"
-        ],
         "sections": [],
         "cemeteries": [CEMETERY_NAME],
+        "chapters": [
+            "interments",
+            "rois"
+        ],
         "date_from": None,
         "date_to": None
     }
+
+    act_summary_payload_sections = {
+        "attributes": [
+            "section",
+            "entombment",
+            "burial",
+            "other",
+            "cremation"
+        ],
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": [],
+        "chapters": [
+            "interments",
+            "rois"
+        ],
+        "date_from": None,
+        "date_to": None
+    }
+
+    act_summary_payload_cemetery = {}
 
     interment_payload_section = {
         "attributes": [
@@ -318,6 +322,9 @@ def main():
     # process_report(token, 'inv_summary_cemetery', inv_summary_payload_cemetery, 'inv_summary/'),
     process_report(token, 'inv_summary_sections', inv_summary_payload_section, 'inv_summary/')
 
+    # process_report(token, 'act_summary_cemetery', act_summary_payload_cemetery, 'act_summary/')
+    process_report(token, 'act_summary_sections', act_summary_payload_sections, 'act_summary/')
+
     # process_report(token, 'interment_cemetery', interment_payload_cemetery, 'interment/')
     process_report(token, 'interment_sections', interment_payload_section, 'interments/')
 
@@ -339,9 +346,8 @@ def main():
     # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/people/ done
     # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/business/ done
     # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/roi/ done
+    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/act_summary/
 
-
-# - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/act_summary/
 
 # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/log_activity/
 
