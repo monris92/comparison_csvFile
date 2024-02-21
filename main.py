@@ -85,7 +85,7 @@ def main():
         "event_status": None
     }
 
-    # Process each report
+    # Process each report,
     process_report(token, 'inv_summary_section', inv_summary_payload_section, 'inv_summary/')
     process_report(token, 'inv_summary_cemetery', inv_summary_payload_cemetery, 'inv_summary/')
     # process_report(token, 'interment', interment_payload, 'interment/')
