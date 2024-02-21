@@ -1,5 +1,4 @@
 from auth import *
-from config import *
 from report_utils import *
 
 
@@ -10,7 +9,22 @@ def main():
         sys.exit(1)
 
     # Define payloads for different reports
-    inv_summary_payload = {
+    inv_summary_payload_section = {
+        "attributes": [
+            "section",
+            "reserved",
+            "total",
+            "occupied",
+            "vacant",
+            "unavailable",
+            "for_sale"
+        ],
+        "document_format": "csv",
+        "sections": REPORT_SECTIONS,
+        "cemeteries": []
+    }
+
+    inv_summary_payload_cemetery = {
         "attributes": [
             "section",
             "reserved",
@@ -72,8 +86,8 @@ def main():
     }
 
     # Process each report
-    process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
-    # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
+    process_report(token, 'inv_summary', inv_summary_payload_section, 'inv_summary/')
+    process_report(token, 'inv_summary', inv_summary_payload_cemetery, 'inv_summary/')
     # process_report(token, 'interment', interment_payload, 'interment/')
     # process_report(token, 'interment', interment_payload, 'interment/')
     # process_report(token, 'inv_summary', inv_summary_payload, 'inv_summary/')
