@@ -55,8 +55,8 @@ def main():
             "interments",
             "rois"
         ],
-        "date_from": None,
-        "date_to": None
+        "date_from": "2023-01-01T00:00:00Z",
+        "date_to": "2024-01-01T00:00:00Z"
     }
 
     act_summary_payload_sections = {
@@ -74,8 +74,8 @@ def main():
             "interments",
             "rois"
         ],
-        "date_from": None,
-        "date_to": None
+        "date_from": "2023-01-01T00:00:00Z",
+        "date_to": "2024-01-01T00:00:00Z"
     }
 
     act_summary_payload_cemetery = {}
@@ -112,8 +112,8 @@ def main():
         ],
         "sections": REPORT_SECTIONS,
         "cemeteries": [],
-        "date_from": None,
-        "date_to": None
+        "date_from": "2023-01-01T00:00:00Z",
+        "date_to": "2024-01-01T00:00:00Z"
     }
 
     people_payload_cemetery = {
@@ -247,8 +247,8 @@ def main():
         ],
         "sections": [],
         "cemeteries": [CEMETERY_NAME],
-        "date_from": None,
-        "date_to": None
+        "date_from": "2023-01-01T00:00:00Z",
+        "date_to": "2024-01-01T00:00:00Z"
     }
 
     ROI_payload_sections = {
@@ -280,8 +280,8 @@ def main():
         ],
         "sections": REPORT_SECTIONS,
         "cemeteries": [],
-        "date_from": None,
-        "date_to": None
+        "date_from": "2023-01-01T00:00:00Z",
+        "date_to": "2024-01-01T00:00:00Z"
     }
 
     events_payload = {
@@ -307,8 +307,8 @@ def main():
         "document_format": "csv",
         "sections": [],
         "cemeteries": [CEMETERY_NAME],
-        "date_from": None,
-        "date_to": None,
+        "date_from": "2023-01-01T00:00:00Z",
+        "date_to": "2024-01-01T00:00:00Z",
         "mon_year": "02/2024",
         "status_event": "all",
         "assigned_party": None,
