@@ -368,7 +368,7 @@ def main():
     process_report(token, 'act_summary_cemetery', act_summary_payload_cemetery, 'act_summary/')
     process_report(token, 'act_summary_sections', act_summary_payload_sections, 'act_summary/')
 
-    process_report(token, 'interment_cemetery', interment_payload_cemetery, 'interment/')
+    process_report(token, 'interment_cemetery', interment_payload_cemetery, 'interments/')
     process_report(token, 'interment_sections', interment_payload_section, 'interments/')
 
     process_report(token, 'people_cemetery', people_payload_cemetery, 'people/')
