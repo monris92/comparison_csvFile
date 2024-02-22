@@ -307,7 +307,7 @@ def main():
         "document_format": "csv",
         "sections": [],
         "cemeteries": [CEMETERY_NAME],
-        "date_from": "2000-01-01T00:00:00Z",
+        "date_from": "2023-01-01T00:00:00Z",
         "date_to": "2024-01-01T00:00:00Z",
         "mon_year": "02/2024",
         "status_event": "all",
