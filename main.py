@@ -303,6 +303,8 @@ def main():
             "related_interment",
             "event_payment",
             "event_purchaser",
+            "story_data_id",
+            "responsible_person",
             "cover_image"
         ],
         "document_format": "csv",
