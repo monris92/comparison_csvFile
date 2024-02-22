@@ -1,14 +1,7 @@
 Events
-Cemetery;Plot id;Event name;Event types;Descriptions;Event location;Cremation location;Related interment;Event date;Start time;End time;Event repeat;Assigned business;Payment amount;Payment status;Event purchaser;Purchaser email;Purchaser phone;Primary address;Primary suburb;Primary state;Primary country;Primary postcode;Secondary address;Secondary suburb;Secondary state;Secondary country;Secondary postcode
-Astana_Tegal_Gundul;B B 3;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;The event decline with reason '';Plot;;;06/02/2024;08:12:16;08:12:16;;;;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 3;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;The event decline with reason '';Plot;;;06/02/2024;08:13:44;08:13:44;;;;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 4;Purchase plot by FN_ROI on plot B B 3;Purchase Plot;bbb. The event decline with reason '';Plot;;;06/02/2024;08:23:00;08:23:00;;;0;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;;;06/02/2024;08:36:17;08:36:17;;;;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;mm. The event decline with reason '';Plot;;;06/02/2024;08:37:00;08:37:00;;;0;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;;;06/02/2024;08:53:00;08:53:00;;;0;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;;;12/02/2024;01:24:50;01:24:50;;;;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI on plot B B 5;Purchase Plot;The event decline with reason '';Plot;;;12/02/2024;01:41:56;01:41:56;;;;Unpad;FN_ROI Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_Theresa on plot B B 5;Purchase Plot;The event decline with reason '';Plot;;;12/02/2024;01:44:48;01:44:48;;;;Unpad;FN_ROI_Theresa Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_pre_Derick on plot B B 5;Purchase Plot;;Plot;;;12/02/2024;01:46:23;01:46:23;;;;Unpad;FN_ROI_pre_Derick Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
-Astana_Tegal_Gundul;B B 5;Purchase plot by FN_ROI_at_Samanta on plot B B 5;Purchase Plot;;Plot;;;12/02/2024;01:47:24;01:47:24;;;;Unpad;FN_ROI_at_Samanta Ln_Applicant;faris+roiApplicant@chronicle.rip;;;;;;;;;;;
+Cemetery;Plot id;Event name;Event types;Descriptions;Event location;Cremation location;Related interment;Event date;Start time;End time;Event repeat;Assigned business;Responsible person;Payment amount;Payment status;Event purchaser;Purchaser email;Purchaser phone;Primary address;Primary suburb;Primary state;Primary country;Primary postcode;Secondary address;Secondary suburb;Secondary state;Secondary country;Secondary postcode;cover_image
+Astana_Tegal_Gundul;;example event in production;Burial;;;;;26/07/2023;00:00:00;00:00:00;;;admin@chronicle.rip;0;Unpad;;;;;;;;;;;;;;
+Astana_Tegal_Gundul;A D 5;test a d 5;Expired Lease;;Plot;;;05/03/2023;00:00:00;00:00:00;None;;admin@chronicle.rip;;;;;;;;;;;;;;;;
+Astana_Tegal_Gundul;A B 1;test event prod;Burial;;Plot;;;03/10/2023;08:56:00;08:56:00;;Firza Dig a grave;admin@chronicle.rip;0;Unpad;;;;;;;;;;;;;;https://storage.googleapis.com/map-chronicle/storage/tmp/images/image_12_jN6BTud.png
+Astana_Tegal_Gundul;A D 1;Installed plaques;Plaque Install;added by sexton;Plot;;;04/10/2023;15:00:00;16:00:00;;BSO;admin@chronicle.rip;0;Unpad;;;;;;;;;;;;;;
  

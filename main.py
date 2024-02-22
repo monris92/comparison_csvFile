@@ -313,8 +313,8 @@ def main():
         "status_event": "all",
         "assigned_party": None,
         "responsible_person": None,
-        "event_type": 28313,
-        "event_sub_type": 32089,
+        "event_type": None,
+        "event_sub_type": None,
         "event_status": None
     }
 
