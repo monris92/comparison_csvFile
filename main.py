@@ -383,16 +383,5 @@ def main():
     process_report(token, 'events', events_payload, 'events/')
     process_report(token, 'log_activity', log_activity_payload, 'log_activity/')
 
-    # process_report(token, 'events', events_payload, 'events/')
-
-    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/inv_summary/ done
-    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/interments/ done
-    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/people/ done
-    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/business/ done
-    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/roi/ done
-    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/act_summary/
-    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/log_activity/
-
-
 if __name__ == "__main__":
     main()
