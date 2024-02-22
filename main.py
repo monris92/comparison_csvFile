@@ -345,7 +345,7 @@ def main():
     process_report(token, 'ROI_sections', ROI_payload_sections, 'roi/')
 
     process_report(token, 'events', events_payload, 'events/')
-    process_report(token, 'events', log_activity_payload, 'log_activity/')
+    process_report(token, 'log_activity', log_activity_payload, 'log_activity/')
 
     # process_report(token, 'events', events_payload, 'events/')
 
