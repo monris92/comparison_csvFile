@@ -318,8 +318,15 @@ def main():
         "event_status": None
     }
 
+    log_activity_payload = {
+        "document_format": "csv",
+        "sections": [],
+        "cemeteries": [],
+        "mon_year": "01/2024"
+    }
+
     # Process each report
-    # process_report(token, 'inv_summary_cemetery', inv_summary_payload_cemetery, 'inv_summary/'),
+    process_report(token, 'inv_summary_cemetery', inv_summary_payload_cemetery, 'inv_summary/'),
     process_report(token, 'inv_summary_sections', inv_summary_payload_section, 'inv_summary/')
 
     # process_report(token, 'act_summary_cemetery', act_summary_payload_cemetery, 'act_summary/')
@@ -338,6 +345,7 @@ def main():
     process_report(token, 'ROI_sections', ROI_payload_sections, 'roi/')
 
     process_report(token, 'events', events_payload, 'events/')
+    process_report(token, 'events', log_activity_payload, 'log_activity/')
 
     # process_report(token, 'events', events_payload, 'events/')
 
@@ -347,9 +355,7 @@ def main():
     # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/business/ done
     # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/roi/ done
     # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/act_summary/
-
-
-# - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/log_activity/
+    # - {{baseUrl-v2}}/reports/cemetery/{{cemetery-unique_name}}/generate/log_activity/
 
 if __name__ == "__main__":
     main()

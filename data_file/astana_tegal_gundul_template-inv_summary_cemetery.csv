@@ -1,6 +1,6 @@
 Inventory summary
-Section;Occupied;Vacant;Reserved;Unavailable;For sale;Total
-Section A;19;62;7;2;4;94
-Section B;15;56;8;2;10;91
-Total;34;118;15;4;14;185
+Cemetery;Section;Occupied;Vacant;Reserved;Unavailable;For sale;Total
+Astana_Tegal_Gundul;Section A;19;62;7;2;4;94
+Astana_Tegal_Gundul;Section B;15;56;8;2;10;91
+Total;;34;118;15;4;14;185
  

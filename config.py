@@ -37,6 +37,7 @@ LOCAL_CSV_FILES = {
     'act_summary_cemetery': 'data_file/astana_tegal_gundul_template-act_summary_cemetery.csv',
     'act_summary_sections': 'data_file/astana_tegal_gundul_template-act_summary_sections.csv',
 
-    'events': 'data_file/astana_tegal_gundul_template-events.csv'
+    'events': 'data_file/astana_tegal_gundul_template-events.csv',
+    'log_activity': 'data_file/astana_tegal_gundul_template-log_activity.csv'
 
 }
