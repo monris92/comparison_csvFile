@@ -1,12 +1,14 @@
 Interments
-Section;Burial;Cremation;Entombment;Other
-Section A;18;3;0;2
-Section B;12;7;1;3
-Total;30;10;1;5
+Cemetery;Section;Burial;Cremation;Entombment;Other
+Astana_Tegal_Gundul;Section A;2;0;0;0
+Astana_Tegal_Gundul;Section B;1;0;0;0
+Astana_Tegal_Gundul;Unassigned;0;0;0;0
+Total;;3;0;0;0
  
 ROI
-Section;Burial;Cremation;Other
-Section A;11;0;7
-Section B;7;0;7
-Total;18;0;14
+Cemetery;Section;Burial;Cremation;Other
+Astana_Tegal_Gundul;Section A;2;0;1
+Astana_Tegal_Gundul;Section B;1;0;2
+Astana_Tegal_Gundul;Unassigned;0;0;0
+Total;;3;0;3
  
