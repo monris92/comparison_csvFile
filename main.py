@@ -40,24 +40,7 @@ def main():
         "cemeteries": []
     }
 
-    interment_payload_cemetery = {
-        "attributes": [
-            "section",
-            "entombment",
-            "burial",
-            "other",
-            "cremation"
-        ],
-        "document_format": "csv",
-        "sections": [],
-        "cemeteries": [CEMETERY_NAME],
-        "chapters": [
-            "interments",
-            "rois"
-        ],
-        "date_from": "2000-01-01T00:00:00Z",
-        "date_to": "2024-01-01T00:00:00Z"
-    }
+    act_summary_payload_cemetery = {}
 
     act_summary_payload_sections = {
         "attributes": [
@@ -78,7 +61,24 @@ def main():
         "date_to": "2024-01-01T00:00:00Z"
     }
 
-    act_summary_payload_cemetery = {}
+    interment_payload_cemetery = {
+        "attributes": [
+            "section",
+            "entombment",
+            "burial",
+            "other",
+            "cremation"
+        ],
+        "document_format": "csv",
+        "sections": [],
+        "cemeteries": [CEMETERY_NAME],
+        "chapters": [
+            "interments",
+            "rois"
+        ],
+        "date_from": "2000-01-01T00:00:00Z",
+        "date_to": "2024-01-01T00:00:00Z"
+    }
 
     interment_payload_section = {
         "attributes": [
