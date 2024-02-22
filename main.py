@@ -302,7 +302,8 @@ def main():
             "created_by",
             "related_interment",
             "event_payment",
-            "event_purchaser"
+            "event_purchaser",
+            "cover_image"
         ],
         "document_format": "csv",
         "sections": [],
