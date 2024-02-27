@@ -1,5 +1,6 @@
 import csv
 from io import StringIO
+from config import LOCAL_CSV_FILES
 
 
 def normalize_newlines(text):
@@ -59,9 +60,9 @@ def compare_with_local_template(downloaded_csv_path, local_csv_key, local_csv_fi
     Returns:
         bool: True if the files match, False otherwise.
     """
-    local_csv_file = local_csv_files.get(local_csv_key)
-    if not local_csv_file:
+    local_csv_path = local_csv_files.get(local_csv_key)
+    if not local_csv_path:
         print(f"No local CSV template found for key '{local_csv_key}'.")
         return False
 
-    return compare_csv(downloaded_csv_path, local_csv_file)
+    return compare_csv(downloaded_csv_path, local_csv_path)
