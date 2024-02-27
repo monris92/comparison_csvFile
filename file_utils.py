@@ -7,7 +7,7 @@ def normalize_newlines(text):
     return text.replace('\r\n', '\n').replace('\r', '\n')
 
 
-def compare_csv(downloaded_csv_path, local_csv_file):
+def compare_csv(downloaded_csv_path, LOCAL_CSV_FILES):
     """
     Compares a downloaded CSV file with a local template file.
 
