@@ -1,5 +1,6 @@
-from report_utils import process_csv_files
 from config import URL_100USER, URL_1000USER
+from report_utils import process_csv_files
+import file_utils
 
 
 def main():
@@ -10,7 +11,7 @@ def main():
     }
 
     # Process the CSV files
-    process_csv_files(files_to_process)
+    process_csv_files(files_to_process, file_utils)
 
 
 if __name__ == "__main__":
