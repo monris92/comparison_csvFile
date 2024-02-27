@@ -1,43 +1,17 @@
-import os
-
 # API Endpoints
-BASE_URL = "https://map.chronicle.rip/api"
-API_VERSION_V1 = "v1"
-API_VERSION_V2 = "v2"
+BASE_URL = "https://drive.google.com/uc?"
+
+# Specific paths for different user-size CSV files
+PATH_100USER = "id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download"
+PATH_1000USER = "id=1OT84-j5J5z2tHoUvikJtoJFInWmlyYzY&export=download"
+
+# Full download URLs constructed from the base URL and specific paths
+URL_100USER = BASE_URL + PATH_100USER
+URL_1000USER = BASE_URL + PATH_1000USER
+
 DOWNLOAD_PATH = "temp/"
-
-# Report Configurations
-REPORT_ATTRS = ["plot_id"]
-REPORT_SECTIONS = ["Section A", "Section B"]
-REPORT_CHAPTERS = [
-    "roi_holders",
-    "roi_applicants",
-    "interments",
-    "next_of_kins",
-    "interment_applicants",
-]
-CEMETERY_NAME = "Astana_Tegal_Gundul"
-
-# Credentials (should be environment variables for security)
-USERNAME = os.environ['USER_SUPER_ADMIN']
-PASSWORD = os.environ['PASS_SUPER_ADMIN']
-
-# Filepaths
+# Mapping of local CSV file names to their paths
 LOCAL_CSV_FILES = {
-    'inv_summary_cemetery': 'data_file/astana_tegal_gundul_template-inv_summary_cemetery.csv',
-    'inv_summary_sections': 'data_file/astana_tegal_gundul_template-inv_summary_sections.csv',
-    'interment_cemetery': 'data_file/astana_tegal_gundul_template-interments_cemetery.csv',
-    'interment_sections': 'data_file/astana_tegal_gundul_template-interments_sections.csv',
-    'people_cemetery': 'data_file/astana_tegal_gundul_template-people_cemetery.csv',
-    'people_sections': 'data_file/astana_tegal_gundul_template-people_sections.csv',
-    'business_cemetery': 'data_file/astana_tegal_gundul_template-business_cemetery.csv',
-    'business_sections': 'data_file/astana_tegal_gundul_template-business_sections.csv',
-    'ROI_cemetery': 'data_file/astana_tegal_gundul_template-ROI_cemetery.csv',
-    'ROI_sections': 'data_file/astana_tegal_gundul_template-ROI_sections.csv',
-    'act_summary_cemetery': 'data_file/astana_tegal_gundul_template-act_summary_cemetery.csv',
-    'act_summary_sections': 'data_file/astana_tegal_gundul_template-act_summary_sections.csv',
-
-    'events': 'data_file/astana_tegal_gundul_template-events.csv',
-    'log_activity': 'data_file/astana_tegal_gundul_template-log_activity.csv'
-
+    'customers-100.csv': 'data_file/customers-100.csv',
+    'customers-1000.csv': 'data_file/customers-1000.csv',
 }

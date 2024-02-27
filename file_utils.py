@@ -1,18 +1,5 @@
 import csv
-
-import requests
-
-
-def download_csv(download_url, local_file_path):
-    response = requests.get(download_url)
-    if response.status_code == 200:
-        with open(local_file_path, 'wb') as file:
-            file.write(response.content)
-        print(f"CSV downloaded successfully to {local_file_path}.")
-        return True
-    else:
-        print("Failed to download CSV.")
-        return False
+from io import StringIO
 
 
 def normalize_newlines(text):
@@ -20,39 +7,61 @@ def normalize_newlines(text):
 
 
 def compare_csv(downloaded_csv_path, local_csv_file):
-    # Ubah pembacaan file untuk normalisasi newline
+    """
+    Compares a downloaded CSV file with a local template file.
+
+    Args:
+        downloaded_csv_path (str): The path to the downloaded CSV file.
+        local_csv_file (str): The path to the local template CSV file.
+
+    Returns:
+        bool: True if the files match, False otherwise.
+    """
+    # Normalize newlines and read the contents of the downloaded file
     with open(downloaded_csv_path, 'r', encoding='utf-8') as downloaded_file:
-        downloaded_csv_content = downloaded_file.read()
-    downloaded_csv_content = normalize_newlines(downloaded_csv_content)
+        downloaded_csv_content = normalize_newlines(downloaded_file.read())
 
+    # Normalize newlines and read the contents of the local file
     with open(local_csv_file, 'r', encoding='utf-8') as local_file:
-        local_csv_content = local_file.read()
-    local_csv_content = normalize_newlines(local_csv_content)
+        local_csv_content = normalize_newlines(local_file.read())
 
-    # Gunakan StringIO untuk mem-parsing string sebagai file CSV
-    from io import StringIO
-    downloaded_csv = list(csv.reader(StringIO(downloaded_csv_content)))
-    local_csv = list(csv.reader(StringIO(local_csv_content)))
+    # Use StringIO to treat strings as file-like objects for csv.reader
+    downloaded_csv = csv.reader(StringIO(downloaded_csv_content))
+    local_csv = csv.reader(StringIO(local_csv_content))
 
-    if len(downloaded_csv) != len(local_csv):
-        print("Validation failed: Number of rows does not match.")
-        return False
-
-    for row_index, (downloaded_row, local_row) in enumerate(zip(downloaded_csv, local_csv)):
+    # Compare the content row by row
+    for downloaded_row, local_row in zip(downloaded_csv, local_csv):
         if downloaded_row != local_row:
-            print(f"Validation failed at row {row_index + 1}:")
+            print("Validation failed: Rows do not match.")
             print(f"Downloaded: {downloaded_row}")
             print(f"Local: {local_row}")
             return False
 
-    print("All validations passed.")
+    # Check if we've reached the end of both files
+    if next(downloaded_csv, None) or next(local_csv, None):
+        print("Validation failed: One of the files has extra rows.")
+        return False
+
+    # If all rows match and there are no extra rows, the files are the same
+    print("Validation passed: Files are identical.")
     return True
 
 
-def compare_with_local_template(downloaded_csv_path, report_type_suffix, local_csv_files):
-    local_csv_file = local_csv_files.get(report_type_suffix)
+def compare_with_local_template(downloaded_csv_path, local_csv_key, local_csv_files):
+    """
+    Compares the downloaded CSV file with the appropriate local template.
+
+    Args:
+        downloaded_csv_path (str): The path to the downloaded CSV file.
+        local_csv_key (str): The key to identify the local CSV file template.
+        local_csv_files (dict): A dictionary mapping keys to local CSV file paths.
+
+    Returns:
+        bool: True if the files match, False otherwise.
+    """
+    local_csv_file = local_csv_files.get(local_csv_key)
     if not local_csv_file:
-        print(f"No local CSV template found for report type '{report_type_suffix}'.")
+        print(f"No local CSV template found for key '{local_csv_key}'.")
         return False
 
     return compare_csv(downloaded_csv_path, local_csv_file)
