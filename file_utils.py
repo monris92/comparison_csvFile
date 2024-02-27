@@ -7,7 +7,7 @@ def normalize_newlines(text):
     return text.replace('\r\n', '\n').replace('\r', '\n')
 
 
-def compare_csv(downloaded_csv_path, LOCAL_CSV_FILES):
+def compare_csv(downloaded_csv_path, local_csv_file):
     """
     Compares a downloaded CSV file with a local template file.
 
@@ -46,6 +46,7 @@ def compare_csv(downloaded_csv_path, LOCAL_CSV_FILES):
     # If all rows match and there are no extra rows, the files are the same
     print("Validation passed: Files are identical.")
     return True
+
 
 
 def compare_with_local_template(downloaded_csv_path, local_csv_key, local_csv_files):
