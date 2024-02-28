@@ -29,7 +29,7 @@ def process_csv_files(files_to_process, file_utils):
             continue
 
         if download_csv_from_url(download_url, downloaded_csv_path):
-            if file_utils.compare_with_local_template(downloaded_csv_path, local_csv_path):
+            if file_utils.compare_with_local_template(downloaded_csv_path, local_file_name, file_utils.LOCAL_CSV_FILES):
                 print(f"Validation successful for {local_file_name}.")
             else:
                 print(f"Validation failed for {local_file_name}.")
