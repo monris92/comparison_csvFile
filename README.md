@@ -1,3 +1,4 @@
+
 # Report Validation Guide
 
 ## Overview
@@ -13,10 +14,15 @@ Set the appropriate values in `config.py`:
 
 - `BASE_URL`: The API's base URL.
 - `API_VERSION`: The version of the API in use.
-- `CEMETERY_NAME`: The target cemetery name for report management.
-- `USERNAME`, `PASSWORD`: The API authentication credentials.
 - `LOCAL_CSV_FILES`: A dictionary mapping report types to paths of local reference CSV templates.
 - `DOWNLOAD_PATH`: Directory path where CSV reports will be downloaded.
+
+<!-- file_utils.py
+config.py
+main.py
+report_utils.py 
+folder data_file/ for local file csv 
+folder data temp/ for temporary csv downloaded-->
 
 ## Process Workflow
 
