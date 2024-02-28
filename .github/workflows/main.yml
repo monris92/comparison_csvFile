@@ -38,4 +38,6 @@ jobs:
           echo "Validation failed. See validation_error.txt for details."
           exit  1
         fi
-      
+        
+    - name: List directory contents
+      run: ls -la
