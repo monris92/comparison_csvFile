@@ -36,7 +36,10 @@ def compare_csv(downloaded_csv_path, local_csv_file):
             print("Validation failed: Rows do not match.")
             print(f"Downloaded: {downloaded_row}")
             print(f"Local: {local_row}")
+            with open("validation_error.txt", "w") as error_file:
+                error_file.write("Validation failed: Rows do not match.\n")
             return False
+            sys.exit(1)  # Exit with a non-zero status code
 
     # Check if we've reached the end of both files
     if next(downloaded_csv, None) or next(local_csv, None):
