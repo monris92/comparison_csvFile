@@ -1,38 +1,67 @@
-# Comparison CSV File Project
+# Comparison CSV File
 
 ## Introduction
 
-This project is designed to download CSV files from specified URLs and compare them with local template files. The comparison is done to ensure that the downloaded files match the expected format and content. This can be particularly useful for validating data integrity and consistency across different sources.
+This project is designed to download CSV files from specified URLs and compare them with local templates to ensure they match. It's particularly useful for validating data integrity and consistency across different datasets.
 
-## Project Structure
+## Installation
 
-The project is organized into several key components:
+### Prerequisites
 
-- `config.py`: Contains configuration settings such as API endpoints, download paths, and mappings of local CSV file names to their paths.
-- `file_utils.py`: Utility functions for file operations, including normalizing newlines, comparing CSV files, and comparing a downloaded CSV file with a local template file.
-- `report_utils.py`: Utility functions for downloading CSV files from URLs and processing them, including comparing them with local templates.
-- `main.py`: The entry point of the application, which defines the files to process and initiates the CSV file comparison process.
+- Python 3.x
+- Required Python packages: `requests`
 
-## Setting Up the Project
+### Installation Steps
 
-1. **Clone the Repository**: Clone this repository to your local machine.
-2. **Install Dependencies**: Ensure you have Python installed on your machine. This project does not require any external libraries beyond the standard Python library.
-3. **Configure the Project**: Update the `config.py` file with the appropriate API endpoints and local CSV file paths as needed.
-
-## Running the Project
-
-1. **Navigate to the Project Directory**: Open a terminal or command prompt and navigate to the root directory of the project.
-2. **Run the Main Script**: Execute the `main.py` script using Python. This will initiate the process of downloading and comparing the CSV files.
+1. Clone the repository:
+   ```
+   git clone https://github.com/monris92/comparison_csvFile.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd comparison_csvFile
+   ```
+3. Install the required Python packages:
+   ```
+   pip install -r requirements.txt
+   ```
 
 ## Usage
 
-The `main.py` script is designed to process a predefined set of CSV files. It downloads each file from its specified URL and compares it with a local template file. If the files match, a success message is printed; otherwise, a failure message is printed.
+1. Ensure you have the necessary configuration in `config.py`, including the download URLs and local CSV file paths.
+2. Run the main script:
+   ```
+   python main.py
+   ```
+3. The script will download the specified CSV files and compare them with the local templates.
 
-## Contributing
+## Functionalities
 
-Contributions to this project are welcome. Please feel free to submit pull requests or open issues for any improvements or bug fixes.
+### `main.py`
+
+- **Main Functionality**: Orchestrates the process of downloading and comparing CSV files.
+- **Key Functions**:
+ - `main()`: Initializes the process by defining file names and URLs, then calls `process_csv_files()` to handle the CSV file processing.
+
+### `file_utils.py`
+
+- **Main Functionality**: Provides utility functions for file handling and CSV comparison.
+- **Key Functions**:
+ - `normalize_newlines(text)`: Normalizes newline characters in a given text.
+ - `compare_csv(downloaded_csv_path, local_csv_file)`: Compares a downloaded CSV file with a local template file.
+ - `compare_with_local_template(downloaded_csv_path, local_csv_key, local_csv_files)`: Compares the downloaded CSV file with the appropriate local template based on a key.
+
+### `report_utils.py`
+
+- **Main Functionality**: Handles the downloading of CSV files from URLs and processing them.
+- **Key Functions**:
+ - `download_csv_from_url(download_url, downloaded_csv_path)`: Downloads a CSV file from a given URL and saves it to a specified path.
+ - `process_csv_files(files_to_process, file_utils)`: Processes a list of CSV files by downloading them and comparing them with local templates.
+
+## Contribution
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you find any bugs or have suggestions for improvements.
 
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
-
