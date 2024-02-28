@@ -31,4 +31,11 @@ jobs:
       env:
         USER_SUPER_ADMIN: ${{ secrets.USER_SUPER_ADMIN }}
         PASS_SUPER_ADMIN: ${{ secrets.PASS_SUPER_ADMIN }}
-      # Menjalankan skrip validasi CSV dan mengatur variabel lingkungan
+    
+    - name: Check for validation errors
+      run: |
+        if [ -f "validation_error.txt" ]; then
+          echo "Validation failed. See validation_error.txt for details."
+          exit  1
+        fi
+      
